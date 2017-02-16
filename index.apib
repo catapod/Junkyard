@@ -1,0 +1,108 @@
+FORMAT: 1A
+
+# Junkyard
+
+API для организации работы над оригинальными материалами, включая перевод
+и редактирование.
+
+# Data Structures
+
+## Material (object)
+
++ id (required, number) - Уникальный идентификатор материала
++ owner (required, Owner) - Владелец материала - институт, частное лицо, компания и т.д.
++ category (Category) - Наука
++ subcategory (SubCategory) - Направление науки
++ course (Course) - Курс
++ course_position (number) - Порядковый номер материала в курсе
++ link (required, string) - Ссылка на оригинал
++ caption_original (required, string) - Наименование материала на языке оригинала
++ caption_translated (string) - Переведенное на русский язык наименование материала
++ annotation_original (required, string) - Аннотация материала на языке оригинала
++ annotation_translated (string) - Переведенная на русский язык аннотация материала
++ authors (required, array[Author]) - Список авторов материала
++ state (required, State) - Текущее состояние материала
++ license (required, License) - Лицензия, по которой распространяется материал
+
+## License (object)
+
++ id (required, number) - Уникальный идентификатор лицензии
++ name (required, string) - Наименование лицензии
+
+## Owner (object)
+
++ id (required, number) - Уникальный идентификатор правообладателя
++ caption_original (required, string) - Наименование правообладателя на языке оригинала
++ caption_translated (string) - Наименование правообладателя, переведенного на русский язык
++ short_original (required, string) - Сокращенное наименование правообладателя на языке оригинал
++ short_translated (string) - Сокращенное наименование правообладателя, переведенное на русский язык
++ link (string) - Ссылка на официальный ресурс в Интернете
++ icon (string) - Ссылка на иконку правообладателя
+
+## Category (object)
+
++ id (required, number) - Уникальный идентификатор раздела науки
++ name (required, string) - Наименование науки
+
+## SubCategory (object)
+
++ id (required, number) - Уникальный идентификатор направления науки
++ caption (required, string) - Наименование направления науки
+
+## Course (object)
+
++ caption_original (required, string) - Оригинальное наименование курса
++ caption_translated (string) - Переведенное на русский язык наименование курса
+
+## Author (object)
+
++ id (required, number) - Уникальный идентификатор автора
++ name_original (required, string) - Имя автора на языке оригинала
++ name_translated (required, string) - Переведенное на русский язык имя автора
+
+## State (object)
+
++ id (required, number) - Уникальный идентификатор состояния
++ name (required, string) - Системное имя состояния (на английском языке, иначе slug)
++ display_name (required, string) - Отображаемое наименование состояния
+
+## Slice (object)
+
++ id (required, number) - Уникальный идентификатор слайса
++ material_id (required, number) - Идентификатор материала, которому принадлежит слайс
++ material_position (required, number) - Позиция слайса в материале
++ type (required, string) - Тип слайса
++ translatable (required, boolean) - Слайс переводимый? Пример непереводимого слайса - иллюстрация без текста
++ original (required, string) - Оригинальное значение слайса, в случае если значение нетекстовое (изображение, аудиозапись), то размещается ссылка на объект
++ translations (array[Translation]) - Если слайс переводимый, то содержит массив переводов, иначе атрибут отсутствует
+
+## Translation (object)
+
++ id (required, number) - Уникальный идентификатор варианта перевода
++ slice_id (required, number) - Идентификатор слайса, которому принадлежит вариант перевода
++ translator (required, User) - Автор (пользователь портала) варианта перевода
++ comments (array[Comment]) - Комментарии к варианту перевода
++ rating (required, number) - Усредненное значение пользовательских оценок варианта перевода
++ marks (array[Mark]) - Оценки варианта перевода пользователями
++ created_at (required, number) - Время создания варианта перевода в формате Unix time
++ updated_at (required, number) - Время редактирования варианта перевода в формате Unix time
+
+## User (object)
+
++ id (number) - Уникальный идентификатор пользователя
++ nickname (string) - Никнейм пользователя
++ avatar (string) - Ссылка на аватар
+
+## Comment (object)
+
++ id (required, number) - Уникальный идентификатор комментария
++ slice_id (required, number) - Идентификатор слайса, которому принадлежит вариант перевода
++ commentator (required, User) - Автор комментария
++ text (required, string) - Текст комментария
++ comments (array[Comment]) - Комментарии к варианту перевода, являющиеся ответами на текущий комментарий
+
+## Mark (object)
+
++ id (required, number) - Уникальный идентификатор оценки
++ rater (required, User) - Пользователь, поставивший оценку варианту перевода
++ value (required, number) - Значение оценки
