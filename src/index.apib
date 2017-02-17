@@ -117,3 +117,20 @@ API для организации работы над оригинальными
 + Response 200 (application/json)
 
     + Attributes (Material)
+
+### Создать новый материал [POST]
+
++ Response 201 (application/json)
+
+    + Attributes (Material)
+
++ Response 400 (application/json)
+
+        {
+            "errors": [
+                {
+                    "title": "Invalid attribute.",
+                    "detail": "Owner is required."
+                }
+            ]
+        }
