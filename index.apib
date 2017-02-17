@@ -15,11 +15,11 @@ API для организации работы над оригинальными
 + subcategory (SubCategory) - Направление науки
 + course (Course) - Курс
 + course_position (number) - Порядковый номер материала в курсе
-+ link (required, string) - Ссылка на оригинал
-+ caption_original (required, string) - Наименование материала на языке оригинала
-+ caption_translated (string) - Переведенное на русский язык наименование материала
-+ annotation_original (required, string) - Аннотация материала на языке оригинала
-+ annotation_translated (string) - Переведенная на русский язык аннотация материала
++ link: `https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-00sc-introduction-to-computer-science-and-programming-spring-2011/unit-1/lecture-5-objects-in-python/lecture-5-objects-in-python/B8is52oxHBw.srt` (required, string) - Ссылка на оригинал
++ caption_original: Objects in Python (required, string) - Наименование материала на языке оригинала
++ caption_translated: Объекты в Python (string) - Переведенное на русский язык наименование материала
++ annotation_original: This lecture introduces Python tuples, lists, and dictionaries, as well as the concept of mutability and how to avoid problems relating to it. (required, string) - Аннотация материала на языке оригинала
++ annotation_translated: В данной лекции вводятся понятия кортежей, списков и словарей в языке Python, а также рассматривается концепция мутабельности и способы решения связанных с ней проблем. (string) - Переведенная на русский язык аннотация материала
 + authors (required, array[Author]) - Список авторов материала
 + state (required, State) - Текущее состояние материала
 + license (required, License) - Лицензия, по которой распространяется материал
@@ -27,44 +27,45 @@ API для организации работы над оригинальными
 ## License (object)
 
 + id (required, number) - Уникальный идентификатор лицензии
-+ name (required, string) - Наименование лицензии
++ name: CC BY-NC-SA 4.0 (required, string) - Наименование лицензии
++ link: https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode (string) - Ссылка на положения лицензии
 
 ## Owner (object)
 
 + id (required, number) - Уникальный идентификатор правообладателя
-+ caption_original (required, string) - Наименование правообладателя на языке оригинала
-+ caption_translated (string) - Наименование правообладателя, переведенного на русский язык
-+ short_original (required, string) - Сокращенное наименование правообладателя на языке оригинал
-+ short_translated (string) - Сокращенное наименование правообладателя, переведенное на русский язык
-+ link (string) - Ссылка на официальный ресурс в Интернете
-+ icon (string) - Ссылка на иконку правообладателя
++ caption_original: Massachusetts Institute of Technology (required, string) - Наименование правообладателя на языке оригинала
++ caption_translated: Массачусетский технологический институт (string) - Наименование правообладателя, переведенного на русский язык
++ short_original: MIT (required, string) - Сокращенное наименование правообладателя на языке оригинал
++ short_translated: МТИ (string) - Сокращенное наименование правообладателя, переведенное на русский язык
++ link: http://web.mit.edu/ (string) - Ссылка на официальный ресурс в Интернете
++ icon: `http://web.mit.edu/files/images/homepage/default/mit_logo.gif?v=1487307612` (string) - Ссылка на иконку правообладателя
 
 ## Category (object)
 
 + id (required, number) - Уникальный идентификатор раздела науки
-+ name (required, string) - Наименование науки
++ name: Информатика (required, string) - Наименование науки
 
 ## SubCategory (object)
 
 + id (required, number) - Уникальный идентификатор направления науки
-+ caption (required, string) - Наименование направления науки
++ caption: Программирование (required, string) - Наименование направления науки
 
 ## Course (object)
 
-+ caption_original (required, string) - Оригинальное наименование курса
-+ caption_translated (string) - Переведенное на русский язык наименование курса
++ caption_original: Electrical Engineering and Computer Science (required, string) - Оригинальное наименование курса
++ caption_translated: Электротехника и вычислительная техника (string) - Переведенное на русский язык наименование курса
 
 ## Author (object)
 
 + id (required, number) - Уникальный идентификатор автора
-+ name_original (required, string) - Имя автора на языке оригинала
-+ name_translated (required, string) - Переведенное на русский язык имя автора
++ name_original: Prof. John Guttag (required, string) - Имя автора на языке оригинала
++ name_translated: Профессор Джон Гуттаг (required, string) - Переведенное на русский язык имя автора
 
 ## State (object)
 
 + id (required, number) - Уникальный идентификатор состояния
-+ name (required, string) - Системное имя состояния (на английском языке, иначе slug)
-+ display_name (required, string) - Отображаемое наименование состояния
++ name: import (required, string) - Системное имя состояния (на английском языке, иначе slug)
++ display_name: Импорт (required, string) - Отображаемое наименование состояния
 
 ## Slice (object)
 
