@@ -44,3 +44,35 @@
                 }
             ]
         }
+
+### Редактировать материал [PATCH]
+
++ Request
+
+    + Attributes (Material)
+
++ Response 200
+
+    + Attributes (Material)
+
++ Response 400
+
+        {
+            "errors": [
+                {
+                    "title": "Invalid attribute.",
+                    "detail": "Owner should exists."
+                }
+            ]
+        }
+
++ Response 404
+
+        {
+            "errors": [
+                {
+                    "title": "Entity not found.",
+                    "detail": "Material was not found."
+                }
+            ]
+        }
