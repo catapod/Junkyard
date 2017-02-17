@@ -22,3 +22,25 @@
                 }
             ]
         }
+
+## Материал [/materials/{material_id}]
+
++ Parameters
+    + material_id: 1 (required, number) - идентификатор материала
+
+### Получить материал [GET]
+
++ Response 200 (application/json)
+
+    + Attributes (Material)
+
++ Response 404 (application/json)
+
+        {
+            "errors": [
+                {
+                    "title": "Entity not found.",
+                    "detail": "Material was not found."
+                }
+            ]
+        }
