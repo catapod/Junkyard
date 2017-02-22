@@ -86,3 +86,29 @@
                 }
             ]
         }
+
+### Удалить слайс [DELETE]
+
++ Response 200 (application/json)
+
++ Response 401 (application/json)
+
+        {
+            "errors": [
+                {
+                    "title": "Unauthorized access.",
+                    "detail": "You don't have rights to delete slice."
+                }
+            ]
+        }
+
++ Response 404 (application/json)
+
+        {
+            "errors": [
+                {
+                    "title": "Entity not found.",
+                    "detail": "Slice was not found."
+                }
+            ]
+        }
