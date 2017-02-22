@@ -31,3 +31,26 @@
                 }
             ]
         }
+
+## Слайс [/materials/{material_id}/slices/{slice_id}]
+
++ Parameters
+    + material_id: 1 (required, number) - идентификатор материала
+    + slice_id: 2 (required, number) - идентификатор слайса
+
+### Получить слайс [GET]
+
++ Response 200 (application/json)
+
+    + Attributes (Slice)
+
++ Response 404 (application/json)
+
+        {
+            "errors": [
+                {
+                    "title": "Entity not found.",
+                    "detail": "Material was not found."
+                }
+            ]
+        }
