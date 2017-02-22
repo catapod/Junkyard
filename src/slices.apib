@@ -10,3 +10,24 @@
 + Response 200 (application/json)
 
     + Attributes (array[Slice])
+
+### Создание нового слайса [POST]
+
++ Request
+
+    + Attributes (Slice)
+
++ Response 201 (application/json)
+
+    + Attributes (Slice)
+
++ Response 400 (application/json)
+
+        {
+            "errors": [
+                {
+                    "title": "Invalid attribute.",
+                    "detail": "Original is required."
+                }
+            ]
+        }
