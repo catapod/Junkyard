@@ -76,3 +76,29 @@
                 }
             ]
         }
+
+### Удалить материал [DELETE]
+
++ Response 200 (application/json)
+
++ Response 401 (application/json)
+
+        {
+            "errors": [
+                {
+                    "title": "Unauthorized access.",
+                    "detail": "You don't have rights to delete material."
+                }
+            ]
+        }
+
++ Response 404 (application/json)
+
+        {
+            "errors": [
+                {
+                    "title": "Entity not found.",
+                    "detail": "Material was not found."
+                }
+            ]
+        }
