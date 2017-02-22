@@ -54,3 +54,35 @@
                 }
             ]
         }
+
+### Редактировать слайс [PATCH]
+
++ Request
+
+    + Attributes (Slice)
+
++ Response 200 (application/json)
+
+    + Attributes (Slice)
+
++ Response 400 (application/json)
+
+        {
+            "errors": [
+                {
+                    "title": "Invalid attribute.",
+                    "detail": "Original should exists."
+                }
+            ]
+        }
+
++ Response 404 (application/json)
+
+        {
+            "errors": [
+                {
+                    "title": "Entity not found.",
+                    "detail": "Slice was not found."
+                }
+            ]
+        }
