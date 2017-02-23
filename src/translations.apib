@@ -1,0 +1,116 @@
+# Group Варианты переводов
+
+## Варианты переводов [/materials/{material_id}/slices/{slice_id}/translations]
+
++ Parameters
+    + material_id: 1 (required, number) - идентификатор материала
+    + slice_id: 2 (required, number) - идентификатор слайса
+
+### Список всех вариантов переводов для слайса [GET]
+
++ Response 200 (application/json)
+
+    + Attributes (array[Translation])
+
+### Создание нового варианта перевода для слайса [POST]
+
++ Request (application/json)
+
+    + Attributes (Translation)
+
++ Response 201 (application/json)
+
+    + Attributes (Translation)
+
++ Response 400 (application/json)
+
+        {
+            "errors": [
+                {
+                    "title": "Invalid attribute.",
+                    "detail": "Translator is required."
+                }
+            ]
+        }
+
+## Вариант перевода [/materials/{material_id}/slices/{slice_id}/translations/{translation_id}]
+
++ Parameters
+    + material_id: 1 (required, number) - идентификатор материала
+    + slice_id: 2 (required, number) - идентификатор слайса
+    + translation_id: 5 (required, number) - идентификатор варианта перевода
+
+### Получить вариант перевода [GET]
+
++ Response 200 (application/json)
+
+    + Attributes (Translation)
+
++ Response 404 (application/json)
+
+        {
+            "errors": [
+                {
+                    "title": "Entity not found.",
+                    "detail": "Translation was not found."
+                }
+            ]
+        }
+
+### Редактировать вариант перевода [PATCH]
+
++ Request (application/json)
+
+    + Attributes (Translation)
+
++ Response 200 (application/json)
+
+    + Attributes (Translation)
+
++ Response 400 (application/json)
+
+        {
+            "errors": [
+                {
+                    "title": "Invalid attribute.",
+                    "detail": "Translator should exists."
+                }
+            ]
+        }
+
++ Response 404 (application/json)
+
+        {
+            "errors": [
+                {
+                    "title": "Entity not found.",
+                    "detail": "Translation was not found."
+                }
+            ]
+        }
+
+### Удалить вариант перевода [DELETE]
+
++ Response 200 (application/json)
+
++ Response 401 (application/json)
+
+        {
+            "errors": [
+                {
+                    "title": "Unauthorized access.",
+                    "detail": "You don't have rights to delete translation."
+                }
+            ]
+        }
+
++ Response 404 (application/json)
+
+        {
+            "errors": [
+                {
+                    "title": "Entity not found.",
+                    "detail": "Translation was not found."
+                }
+            ]
+        }
