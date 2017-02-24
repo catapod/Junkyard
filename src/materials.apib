@@ -26,6 +26,23 @@
 
     + Attributes (Material)
 
++ Request сокращеный запрос (application/json)
+
+    + Body
+
+            {
+                "owner": "FG8913TE",
+                "caption_original": "Objects in Python",
+                "annotation_original": "This lecture introduces Python",
+            }
+
++ Response 201 (application/json)
+
+    + Attributes (Material)
+        + tags (array)
+        + caption_translated (string)
+        + annotation_translated (string)
+
 + Response 400 (application/json)
 
         {
