@@ -11,18 +11,49 @@ API для организации работы над оригинальными
 
 + id (required, number) - Уникальный идентификатор материала
 + owner (required, Owner) - Владелец материала - институт, частное лицо, компания и т.д.
-+ category (required, Category) - Наука
-+ subcategory (required, SubCategory) - Направление науки
-+ course (Course) - Курс
-+ course_position (number) - Порядковый номер материала в курсе
++ tags (required, MaterialTags) - Теги материала, включающие направление, категорию, положение в категории и прочее.
 + link: `https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-00sc-introduction-to-computer-science-and-programming-spring-2011/unit-1/lecture-5-objects-in-python/lecture-5-objects-in-python/B8is52oxHBw.srt` (required, string) - Ссылка на оригинал
 + caption_original: Objects in Python (required, string) - Наименование материала на языке оригинала
 + caption_translated: Объекты в Python (string) - Переведенное на русский язык наименование материала
 + annotation_original: This lecture introduces Python tuples, lists, and dictionaries, as well as the concept of mutability and how to avoid problems relating to it. (required, string) - Аннотация материала на языке оригинала
 + annotation_translated: В данной лекции вводятся понятия кортежей, списков и словарей в языке Python, а также рассматривается концепция мутабельности и способы решения связанных с ней проблем. (string) - Переведенная на русский язык аннотация материала
-+ authors (required, array[Author]) - Список авторов материала
 + state (required, State) - Текущее состояние материала
 + license (required, License) - Лицензия, по которой распространяется материал
+
+## MaterialTags (array)
++ (Tag)
+    + name: course
+    + display_name: курс
+    + type: translatable
+    + value (object)
+        + original: Electrical Engineering and Computer Science
+        + translated: Электротехника и вычислительная техника
++ (Tag)
+    + name: course_position
+    + display_name: номер в курсе
+    + value: 1
++ (Tag)
+    + name: category
+    + display_name: наука
+    + value: Информатика
++ (Tag)
+    + name: subcategory
+    + display_name: раздел науки
+    + value: Программирование
+
++ (Tag)
+    + name: author
+    + display_name: автор
+    + type: translatable
+    + value (object)
+        + original: Prof. John Guttag
+        + translated: Профессор Джон Гуттаг
+
+## Tag (object)
++ name (required, string) - имя тега
++ display_name (required, string) - отображаемое имя тега
++ type: flat, translatable (required, enum) - тип тега
++ value (required, enum[string, object]) - значение тега
 
 ## License (object)
 
@@ -39,27 +70,6 @@ API для организации работы над оригинальными
 + short_translated: МТИ (string) - Сокращенное наименование правообладателя, переведенное на русский язык
 + link: http://web.mit.edu/ (string) - Ссылка на официальный ресурс в Интернете
 + icon: `http://web.mit.edu/files/images/homepage/default/mit_logo.gif?v=1487307612` (string) - Ссылка на иконку правообладателя
-
-## Category (object)
-
-+ id (required, number) - Уникальный идентификатор раздела науки
-+ name: Информатика (required, string) - Наименование науки
-
-## SubCategory (object)
-
-+ id (required, number) - Уникальный идентификатор направления науки
-+ caption: Программирование (required, string) - Наименование направления науки
-
-## Course (object)
-
-+ caption_original: Electrical Engineering and Computer Science (required, string) - Оригинальное наименование курса
-+ caption_translated: Электротехника и вычислительная техника (string) - Переведенное на русский язык наименование курса
-
-## Author (object)
-
-+ id (required, number) - Уникальный идентификатор автора
-+ name_original: Prof. John Guttag (required, string) - Имя автора на языке оригинала
-+ name_translated: Профессор Джон Гуттаг (string) - Переведенное на русский язык имя автора
 
 ## State (object)
 
