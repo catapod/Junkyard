@@ -10,9 +10,17 @@
 
 ### Создать новый материал [POST]
 
-+ Request
++ Request (application/json)
 
-    + Attributes (Material)
+    + Attributes (object)
+        + owner: FG8913TE (required, string) - идентификатор владельца материала
+        + state: BN347FY1 (string) - идентификатор состояния материала
+        + caption_original: Objects in Python (required, string) - Наименование материала на языке оригинала
+        + caption_translated: Объекты в Python (string) - Переведенное на русский язык наименование материала
+        + annotation_original: This lecture introduces Python (required, string) - Аннотация материала на языке оригинала
+        + annotation_translated: В данной лекции вводятся понятия языка Python (string) - Переведенная на русский язык аннотация материала
+        + license: ASD97YUGR (string) - идентификатор лицензии
+        + tags (MaterialTags) - массив объектов типа Tag
 
 + Response 201 (application/json)
 
