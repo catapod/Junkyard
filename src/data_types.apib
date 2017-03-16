@@ -18,30 +18,30 @@
     + tag_id: 32
     + name: course
     + display_name: курс
-    + value (object)
+    + body (object)
         + original: Electrical Engineering and Computer Science
         + translated: Электротехника и вычислительная техника
 + (Tag)
     + tag_id: 12
     + name: course_position
     + display_name: номер в курсе
-    + value: 1
+    + body: 1
 + (Tag)
     + tag_id: 2
     + name: category
     + display_name: наука
-    + value: Информатика
+    + body: Информатика
 + (Tag)
     + tag_id: 54
     + name: subcategory
     + display_name: раздел науки
-    + value: Программирование
+    + body: Программирование
 
 + (Tag)
     + tag_id: 82
     + name: author
     + display_name: автор
-    + value (object)
+    + body (object)
         + original: Prof. John Guttag
         + translated: Профессор Джон Гуттаг
 
@@ -49,7 +49,7 @@
 + tag_id: 76 (required, number) - Уникальный идентификатор тега
 + name (required, string) - имя тега
 + display_name (required, string) - отображаемое имя тега
-+ value (required, enum[string, object]) - значение тега
++ body (required, enum[string, object]) - значение тега
 
 ## License (object)
 
@@ -80,7 +80,7 @@
 + material_position: 0 (required, number) - Позиция слайса в материале
 + type: text (required, string) - Тип слайса
 + translatable: true (required, boolean) - Слайс переводимый? Пример непереводимого слайса - иллюстрация без текста
-+ original: Hey bro! (required, string) - Оригинальное значение слайса, в случае если значение нетекстовое (изображение, аудиозапись), то размещается ссылка на объект
++ body: Hey bro! (required, string) - Оригинальное значение слайса, в случае если значение нетекстовое (изображение, аудиозапись), то размещается ссылка на объект
 + translations (array[Translation]) - Если слайс переводимый, то содержит массив переводов, иначе атрибут отсутствует
 
 ## Translation (object)
@@ -106,7 +106,7 @@
 + comment_id: 123 (required, number) - Уникальный идентификатор комментария
 + slice_id (required, number) - Идентификатор слайса, которому принадлежит вариант перевода
 + commentator (required, User) - Автор комментария
-+ text (required, string) - Текст комментария
++ body (required, string) - Текст комментария
 + parent_id (number) - Идентификатор родительского комментария
 
 ## Rate (object)
@@ -147,10 +147,10 @@ tags | Array of [MaterialTag](#header-теги-материалов-(materialtag
 Теги предназначены для дополнительной фильтрации материалов. Для каждой задачи
 определяется свой набор тегов со своими полями в зависимости от семантики тега.
 
-Например может существовать тег с одиночным значением, тогда в поле _value_
+Например может существовать тег с одиночным значением, тогда в поле _body_
 записывается непосредственно само значение в формате JSON. В случае более сложных
 тегов, например с двумя полями — оригинальным и переведенным значениями в поле
-_value_ должен быть записан JSON-объект с полям `original` (оригинальное значение),
+_body_ должен быть записан JSON-объект с полям `original` (оригинальное значение),
 `translated` (переведенное значение) и их значениями.
 
 Атрибут | Тип | Описание
@@ -158,7 +158,7 @@ _value_ должен быть записан JSON-объект с полям `or
 tag_id | Integer | Уникальный идентификатор тега.
 name | String | Имя тега (системное, латиницей без пробелов, иначе slug).
 display_name | String | Отображаемое имя тега, может быть на любом языке.
-value | JSON | Значение тега.
+body | JSON | Значение тега.
 
 ## Лицензия (License)
 Каждый материал должен обладать своей лицензией. В большинстве случаев лицензия
@@ -215,7 +215,7 @@ material_id | String | Идентификатор материала, котор
 material_position | Integer | Позиция слайса в материале.
 type | String | Тип слайса. См. в описании выше.
 translatable | boolean | Слайс переводимый? Пример непереводимого слайса — иллюстрация без текста.
-original | String | Оригинальное значение слайса, в случае если значение нетекстовое (изображение, аудиозапись), то размещается ссылка на объект
+body | String | Оригинальное значение слайса, в случае если значение нетекстовое (изображение, аудиозапись), то размещается ссылка на объект
 translations | Array of [Translation](#header-перевод-(translation)) | _Опционально._ Присутствует только в том случае, если слайс переводимый.
 
 ## Перевод (Translation)
@@ -250,7 +250,7 @@ avatar | String | Ссылка на аватар.
 comment_id | Integer | Уникальный идентификатор комментария.
 slice_id | Integer | Идентификатор слайса, которому принадлежит вариант перевода.
 commentator | [User](#header-пользователь-(user)) | Автор комментария.
-text | String | Текст комментария.
+body | String | Текст комментария.
 parent_id | Integer | _Опционально._ Идентификатор родительского комментария
 
 ## Оценка рейтинга (Rate)
