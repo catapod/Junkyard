@@ -61,7 +61,7 @@ display_name | string | да | Отображаемое имя тега, мож�
 type | string | да | Тип тега. _Может принимать значения `flat` и `translatable`._
 value | string/object | да | Значение тега. Если тип тега `flat`, то значение должно быть строковое, если тип тега `translatable`, то значение — объект, содержащий два поля: `original`(оригинальное значеи) и `translated`(переведенное значение).
 
-+ Request (application/json)
++ Request полная форма (application/json)
 
     + Attributes (object)
         + owner: FG8913TE (required, string) - идентификатор владельца материала
@@ -77,7 +77,7 @@ value | string/object | да | Значение тега. Если тип тег
 
     + Attributes (Material)
 
-+ Request сокращеный запрос (application/json)
++ Request сокращеная форма (application/json)
 
     + Body
 
@@ -94,7 +94,7 @@ value | string/object | да | Значение тега. Если тип тег
         + caption_translated (string)
         + annotation_translated (string)
 
-+ Request ошибочный запрос (application/json)
++ Request с ошибками (application/json)
 
     + Body
 
