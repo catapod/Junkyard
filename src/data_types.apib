@@ -2,7 +2,7 @@
 
 ## Material (object)
 
-+ id: TUOHUKH13Q (required, string) - Уникальный идентификатор материала
++ material_id: 213 (required, number) - Уникальный идентификатор материала
 + owner (required, Owner) - Владелец материала - институт, частное лицо, компания и т.д.
 + tags (required, MaterialTags) - Теги материала, включающие направление, категорию, положение в категории и прочее.
 + link: `https://ocw.mit.edu/computer-science/B8is52oxHBw.srt` (required, string) - Ссылка на оригинал
@@ -15,25 +15,30 @@
 
 ## MaterialTags (array)
 + (Tag)
+    + tag_id: 32
     + name: course
     + display_name: курс
     + value (object)
         + original: Electrical Engineering and Computer Science
         + translated: Электротехника и вычислительная техника
 + (Tag)
+    + tag_id: 12
     + name: course_position
     + display_name: номер в курсе
     + value: 1
 + (Tag)
+    + tag_id: 2
     + name: category
     + display_name: наука
     + value: Информатика
 + (Tag)
+    + tag_id: 54
     + name: subcategory
     + display_name: раздел науки
     + value: Программирование
 
 + (Tag)
+    + tag_id: 82
     + name: author
     + display_name: автор
     + value (object)
@@ -41,19 +46,20 @@
         + translated: Профессор Джон Гуттаг
 
 ## Tag (object)
++ tag_id: 76 (required, number) - Уникальный идентификатор тега
 + name (required, string) - имя тега
 + display_name (required, string) - отображаемое имя тега
 + value (required, enum[string, object]) - значение тега
 
 ## License (object)
 
-+ id: ASD97YUGR (required, string) - Уникальный идентификатор лицензии
++ license_id: 7123 (required, number) - Уникальный идентификатор лицензии
 + name: `CC BY-NC-SA 4.0` (required, string) - Наименование лицензии
 + link: `https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode` (string) - Ссылка на положения лицензии
 
 ## Owner (object)
 
-+ id: FG8913TE (required, string) - Уникальный идентификатор правообладателя
++ owner_id: 9876 (required, number) - Уникальный идентификатор правообладателя
 + caption_original: Massachusetts Institute of Technology (required, string) - Наименование правообладателя на языке оригинала
 + caption_translated: Массачусетский технологический институт (string) - Наименование правообладателя, переведенного на русский язык
 + short_original: MIT (required, string) - Сокращенное наименование правообладателя на языке оригинал
@@ -63,13 +69,13 @@
 
 ## State (object)
 
-+ id: BN347FY1 (required, string) - Уникальный идентификатор состояния
++ state_id: 34712 (required, number) - Уникальный идентификатор состояния
 + name: import (required, string) - Системное имя состояния (на английском языке, иначе slug)
 + display_name: Импорт (required, string) - Отображаемое наименование состояния
 
 ## Slice (object)
 
-+ id (required, number) - Уникальный идентификатор слайса
++ slice_id: 8712 (required, number) - Уникальный идентификатор слайса
 + material_id (required, number) - Идентификатор материала, которому принадлежит слайс
 + material_position (required, number) - Позиция слайса в материале
 + type (required, string) - Тип слайса
@@ -79,7 +85,7 @@
 
 ## Translation (object)
 
-+ id (required, number) - Уникальный идентификатор варианта перевода
++ translation_id: 987 (required, number) - Уникальный идентификатор варианта перевода
 + slice_id (required, number) - Идентификатор слайса, которому принадлежит вариант перевода
 + translator (required, User) - Автор (пользователь портала) варианта перевода
 + comments (array[Comment]) - Комментарии к варианту перевода
@@ -90,21 +96,21 @@
 
 ## User (object)
 
-+ id (number) - Уникальный идентификатор пользователя
-+ nickname (string) - Никнейм пользователя
++ user_id: 4567 (required, number) - Уникальный идентификатор пользователя
++ nickname (required, string) - Никнейм пользователя
 + avatar (string) - Ссылка на аватар
 
 ## Comment (object)
 
-+ id (required, number) - Уникальный идентификатор комментария
++ comment_id: 123 (required, number) - Уникальный идентификатор комментария
 + slice_id (required, number) - Идентификатор слайса, которому принадлежит вариант перевода
 + commentator (required, User) - Автор комментария
 + text (required, string) - Текст комментария
-+ comments (array[Comment]) - Комментарии к варианту перевода, являющиеся ответами на текущий комментарий
++ parent_id (number) - Идентификатор родительского комментария
 
 ## Rate (object)
 
-+ id (required, number) - Уникальный идентификатор оценки
++ rate_id: 8762 (required, number) - Уникальный идентификатор оценки
 + rater (required, User) - Пользователь, поставивший оценку варианту перевода
 + value (required, number) - Значение оценки
 
