@@ -76,20 +76,20 @@
 ## Slice (object)
 
 + slice_id: 8712 (required, number) - Уникальный идентификатор слайса
-+ material_id (required, number) - Идентификатор материала, которому принадлежит слайс
-+ material_position (required, number) - Позиция слайса в материале
-+ type (required, string) - Тип слайса
-+ translatable (required, boolean) - Слайс переводимый? Пример непереводимого слайса - иллюстрация без текста
-+ original (required, string) - Оригинальное значение слайса, в случае если значение нетекстовое (изображение, аудиозапись), то размещается ссылка на объект
++ material_id: 4567 (required, number) - Идентификатор материала, которому принадлежит слайс
++ material_position: 0 (required, number) - Позиция слайса в материале
++ type: text (required, string) - Тип слайса
++ translatable: true (required, boolean) - Слайс переводимый? Пример непереводимого слайса - иллюстрация без текста
++ original: Hey bro! (required, string) - Оригинальное значение слайса, в случае если значение нетекстовое (изображение, аудиозапись), то размещается ссылка на объект
 + translations (array[Translation]) - Если слайс переводимый, то содержит массив переводов, иначе атрибут отсутствует
 
 ## Translation (object)
 
 + translation_id: 987 (required, number) - Уникальный идентификатор варианта перевода
-+ slice_id (required, number) - Идентификатор слайса, которому принадлежит вариант перевода
++ slice_id: 8712 (required, number) - Идентификатор слайса, которому принадлежит вариант перевода
 + translator (required, User) - Автор (пользователь портала) варианта перевода
 + comments (array[Comment]) - Комментарии к варианту перевода
-+ rating (required, number) - Усредненное значение пользовательских оценок варианта перевода
++ rating: 1 (required, number) - Усредненное значение пользовательских оценок варианта перевода
 + rates (array[Rate]) - Оценки варианта перевода пользователями
 + created_at (required, number) - Время создания варианта перевода в формате Unix time
 + updated_at (required, number) - Время редактирования варианта перевода в формате Unix time
@@ -97,8 +97,8 @@
 ## User (object)
 
 + user_id: 4567 (required, number) - Уникальный идентификатор пользователя
-+ nickname (required, string) - Никнейм пользователя
-+ avatar (string) - Ссылка на аватар
++ nickname: jonny (required, string) - Никнейм пользователя
++ avatar: `http://gravatar.com/jonny` (string) - Ссылка на аватар
 
 ## Comment (object)
 
@@ -112,7 +112,7 @@
 
 + rate_id: 8762 (required, number) - Уникальный идентификатор оценки
 + rater (required, User) - Пользователь, поставивший оценку варианту перевода
-+ value (required, number) - Значение оценки
++ value: 1 (required, number) - Значение оценки
 
 # Group Типы данных
 Раздел описывает основные типы данных для сервиса.
