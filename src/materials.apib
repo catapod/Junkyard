@@ -28,20 +28,20 @@ caption_original | String | Наименование материала на я�
 caption_translated | String | _Опционально._ Переведенное на русский язык наименование материала.
 annotation_original | String | Аннотация материала на языке оригинала.
 annotation_translated | String | _Опционально._ Переведенная на русский язык аннотация материала.
-state_id | Integer | _Опционально._ Идентификатор состояния материала. _По-умолчанию ставится `import`_
+state_id | Integer | _Опционально._ Идентификатор состояния материала. _По-умолчанию ставится идентификатор, соответствующий состоянию `import`_
 license_id | Integer | _Опционально._ Лицензия, под которой распространяется материал. _По-умолчанию ставится лицензия из настроек в системе._
 tags | Array of [MaterialTag](#header-теги-материалов-(materialtag)) | _Опционально._ Теги материала.
 
 + Request полная форма (application/json)
 
     + Attributes (object)
-        + owner: 9876 (required, number) - идентификатор владельца материала
-        + state: 34712 (required) - идентификатор состояния материала
+        + owner_id: 9876 (required, number) - идентификатор владельца материала
+        + state_id: 34712 (optional, number) - идентификатор состояния материала
         + caption_original: Objects in Python (required, string) - Наименование материала на языке оригинала
-        + caption_translated: Объекты в Python (string) - Переведенное на русский язык наименование материала
+        + caption_translated: Объекты в Python (optional, string) - Переведенное на русский язык наименование материала
         + annotation_original: This lecture introduces Python (required, string) - Аннотация материала на языке оригинала
-        + annotation_translated: В данной лекции вводятся понятия языка Python (string) - Переведенная на русский язык аннотация материала
-        + license: 7123 (number) - идентификатор лицензии
+        + annotation_translated: В данной лекции вводятся понятия языка Python (optional, string) - Переведенная на русский язык аннотация материала
+        + license_id: 7123 (optional, number) - идентификатор лицензии
         + tags (MaterialTags) - массив объектов типа Tag
 
 + Response 201 (application/json)
@@ -50,13 +50,10 @@ tags | Array of [MaterialTag](#header-теги-материалов-(materialtag
 
 + Request сокращеная форма (application/json)
 
-    + Body
-
-            {
-                "owner": "9876",
-                "caption_original": "Objects in Python",
-                "annotation_original": "This lecture introduces Python",
-            }
+    + Attributes
+        + owner_id: 9876 (required, number) - идентификатор владельца материала
+        + caption_original: Objects in Python (required, string) - Наименование материала на языке оригинала
+        + annotation_original: This lecture introduces Python (required, string) - Аннотация материала на языке оригинала
 
 + Response 201 (application/json)
 
@@ -67,12 +64,9 @@ tags | Array of [MaterialTag](#header-теги-материалов-(materialtag
 
 + Request с ошибками (application/json)
 
-    + Body
-
-            {
-                "caption_original": "Objects in Python",
-                "annotation_original": "This lecture introduces Python",
-            }
+    + Attributes
+        + caption_original: Objects in Python (required, string) - Наименование материала на языке оригинала
+        + annotation_original: This lecture introduces Python (required, string) - Аннотация материала на языке оригинала
 
 + Response 400 (application/json)
 
@@ -80,7 +74,7 @@ tags | Array of [MaterialTag](#header-теги-материалов-(materialtag
             "errors": [
                 {
                     "title": "Invalid attribute.",
-                    "detail": "Owner is required."
+                    "detail": "Fiesd 'owner_id' is required."
                 }
             ]
         }
