@@ -159,21 +159,29 @@ body | String | Значение варианта перевода
 Пользователь должен обладать правами на изменение рейтинга варианта перевода
 :::
 
+Атрибут | Тип | Описание
+--- | --- | ---
+value | Integer | Значение оценки. Может принимать значения `-1` / `1`
+
 + Request увеличение рейтинга (application/json)
 
     + Attributes
-
-        + direction: up (required, string)
-
-+ Request уменьшение рейтинга (application/json)
-
-    + Attributes
-
-        + direction: down (required, string)
+        + value: 1 (required, number)
 
 + Response 200 (application/json)
 
     + Attributes (Rate)
+        + value: 1
+
++ Request уменьшение рейтинга (application/json)
+
+    + Attributes
+        + value: `-1` (required, number)
+
++ Response 200 (application/json)
+
+    + Attributes (Rate)
+        + value: `-1`
 
 + Response 401 (application/json)
 
