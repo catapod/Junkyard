@@ -1,0 +1,112 @@
+# Data Structures
+
+## Material (object)
+
++ id: TUOHUKH13Q (required, string) - Уникальный идентификатор материала
++ owner (required, Owner) - Владелец материала - институт, частное лицо, компания и т.д.
++ tags (required, MaterialTags) - Теги материала, включающие направление, категорию, положение в категории и прочее.
++ link: `https://ocw.mit.edu/computer-science/B8is52oxHBw.srt` (required, string) - Ссылка на оригинал
++ caption_original: Objects in Python (required, string) - Наименование материала на языке оригинала
++ caption_translated: Объекты в Python (string) - Переведенное на русский язык наименование материала
++ annotation_original: This lecture introduces Python (required, string) - Аннотация материала на языке оригинала
++ annotation_translated: В данной лекции вводятся понятия языка Python (string) - Переведенная на русский язык аннотация материала
++ state (required, State) - Текущее состояние материала
++ license (required, License) - Лицензия, по которой распространяется материал
+
+## MaterialTags (array)
++ (Tag)
+    + name: course
+    + display_name: курс
+    + type: translatable
+    + value (object)
+        + original: Electrical Engineering and Computer Science
+        + translated: Электротехника и вычислительная техника
++ (Tag)
+    + name: course_position
+    + display_name: номер в курсе
+    + value: 1
++ (Tag)
+    + name: category
+    + display_name: наука
+    + value: Информатика
++ (Tag)
+    + name: subcategory
+    + display_name: раздел науки
+    + value: Программирование
+
++ (Tag)
+    + name: author
+    + display_name: автор
+    + type: translatable
+    + value (object)
+        + original: Prof. John Guttag
+        + translated: Профессор Джон Гуттаг
+
+## Tag (object)
++ name (required, string) - имя тега
++ display_name (required, string) - отображаемое имя тега
++ type: flat, translatable (required, enum) - тип тега
++ value (required, enum[string, object]) - значение тега
+
+## License (object)
+
++ id: ASD97YUGR (required, string) - Уникальный идентификатор лицензии
++ name: `CC BY-NC-SA 4.0` (required, string) - Наименование лицензии
++ link: `https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode` (string) - Ссылка на положения лицензии
+
+## Owner (object)
+
++ id: FG8913TE (required, string) - Уникальный идентификатор правообладателя
++ caption_original: Massachusetts Institute of Technology (required, string) - Наименование правообладателя на языке оригинала
++ caption_translated: Массачусетский технологический институт (string) - Наименование правообладателя, переведенного на русский язык
++ short_original: MIT (required, string) - Сокращенное наименование правообладателя на языке оригинал
++ short_translated: МТИ (string) - Сокращенное наименование правообладателя, переведенное на русский язык
++ link: `http://web.mit.edu/` (string) - Ссылка на официальный ресурс в Интернете
++ icon: `http://web.mit.edu/files/images/homepage/default/mit_logo.gif?v=1487307612` (string) - Ссылка на иконку правообладателя
+
+## State (object)
+
++ id: BN347FY1 (required, string) - Уникальный идентификатор состояния
++ name: import (required, string) - Системное имя состояния (на английском языке, иначе slug)
++ display_name: Импорт (required, string) - Отображаемое наименование состояния
+
+## Slice (object)
+
++ id (required, number) - Уникальный идентификатор слайса
++ material_id (required, number) - Идентификатор материала, которому принадлежит слайс
++ material_position (required, number) - Позиция слайса в материале
++ type (required, string) - Тип слайса
++ translatable (required, boolean) - Слайс переводимый? Пример непереводимого слайса - иллюстрация без текста
++ original (required, string) - Оригинальное значение слайса, в случае если значение нетекстовое (изображение, аудиозапись), то размещается ссылка на объект
++ translations (array[Translation]) - Если слайс переводимый, то содержит массив переводов, иначе атрибут отсутствует
+
+## Translation (object)
+
++ id (required, number) - Уникальный идентификатор варианта перевода
++ slice_id (required, number) - Идентификатор слайса, которому принадлежит вариант перевода
++ translator (required, User) - Автор (пользователь портала) варианта перевода
++ comments (array[Comment]) - Комментарии к варианту перевода
++ rating (required, number) - Усредненное значение пользовательских оценок варианта перевода
++ marks (array[Mark]) - Оценки варианта перевода пользователями
++ created_at (required, number) - Время создания варианта перевода в формате Unix time
++ updated_at (required, number) - Время редактирования варианта перевода в формате Unix time
+
+## User (object)
+
++ id (number) - Уникальный идентификатор пользователя
++ nickname (string) - Никнейм пользователя
++ avatar (string) - Ссылка на аватар
+
+## Comment (object)
+
++ id (required, number) - Уникальный идентификатор комментария
++ slice_id (required, number) - Идентификатор слайса, которому принадлежит вариант перевода
++ commentator (required, User) - Автор комментария
++ text (required, string) - Текст комментария
++ comments (array[Comment]) - Комментарии к варианту перевода, являющиеся ответами на текущий комментарий
+
+## Mark (object)
+
++ id (required, number) - Уникальный идентификатор оценки
++ rater (required, User) - Пользователь, поставивший оценку варианту перевода
++ value (required, number) - Значение оценки
