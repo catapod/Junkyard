@@ -9,7 +9,7 @@
 
 + Parameters
     + material_id: 1 (required, number) - идентификатор материала
-    + slice_id: 2 (required, number) - идентификатор слайса
+    + slice_id: 8712 (required, number) - идентификатор слайса
 
 ### Список вариантов переводов [GET]
 
@@ -25,17 +25,25 @@
 
 Атрибут | Тип | Описание
 --- | --- | ---
-slice_id | Integer | Идентификатор слайса, которому принадлежит вариант перевода.
 translator_id | Integer | Идентификатор автор (пользователь портала) варианта перевода.
 body | String | Значение варианта перевода
 
 + Request (application/json)
 
-    + Attributes (Translation)
+    + Attributes (object)
+        + translator_id: 4567 (required, number) - Автор (пользователь портала) варианта перевода
+        + body: Хей бро! (required, string) - Перевод слайса
 
 + Response 201 (application/json)
 
-    + Attributes (Translation)
+    + Attributes (object)
+        + translation_id: 987 (required, number) - Уникальный идентификатор варианта перевода
+        + slice_id: 8712 (required, number) - Идентификатор слайса, которому принадлежит вариант перевода
+        + translator (required, User) - Автор (пользователь портала) варианта перевода
+        + body: Хей бро! (required, string) - Перевод слайса
+        + rating: 0 (required, number) - Усредненное значение пользовательских оценок варианта перевода
+        + created_at: 1489663450223 (required, number) - Время создания варианта перевода в формате Unix time
+        + updated_at: 1489663450223 (required, number) - Время редактирования варианта перевода в формате Unix time
 
 + Response 400 (application/json)
 
@@ -43,7 +51,7 @@ body | String | Значение варианта перевода
             "errors": [
                 {
                     "title": "Invalid attribute.",
-                    "detail": "Translator is required."
+                    "detail": "Field 'translator_id' is required."
                 }
             ]
         }
