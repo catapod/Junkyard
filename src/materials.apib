@@ -1,13 +1,16 @@
 # Group Материалы
 ## Материалы [/materials]
-### Список материалов [GET]
-Параметр | Тип | Обяз. | Описание
---- | --- | --- | ---
-page_size | number | нет | Количество возвращаемых материалов на одной "странице". _По-умолчанию 20._
-page_number | number | нет | Начиная с какой "страницы" возвращать материалы. _По-умолчанию 0._
-order_by | string | нет | Сортировка материалов. _По-умолчанию created_at._
-order_direction | string | нет | Сортировка в порядке убывания. _По-умолчанию desc._
-filter | string | нет | Объект с фильтрами для материалов.
+### Список материалов [GET /materials{?page_size,page_number,order,direction,filter}]
++ Parameters
+    + page_size: 10 (optional, number) - Количество возвращаемых материалов на одной "странице".
+        + Default: `20`
+    + page_number: 5 (optional, number) - Начиная с какой "страницы" возвращать материалы.
+        + Default: `0`
+    + direction: asc (optional, string) - Сортировка результатов.
+        + Default: `desc`
+    + order: `updated` (optional, string) - Сортировка материалов.
+        + Default: `updated`
+    + filter (optional, array) - Объект с фильтрами для материалов.
 
 + Response 200 (application/json)
 
