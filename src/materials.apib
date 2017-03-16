@@ -94,6 +94,15 @@ value | string/object | да | Значение тега. Если тип тег
         + caption_translated (string)
         + annotation_translated (string)
 
++ Request ошибочный запрос (application/json)
+
+    + Body
+
+            {
+                "caption_original": "Objects in Python",
+                "annotation_original": "This lecture introduces Python",
+            }
+
 + Response 400 (application/json)
 
         {
