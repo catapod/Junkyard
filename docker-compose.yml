@@ -1,0 +1,26 @@
+version: '2'
+services:
+  db:
+    image: postgres
+    env_file: .env
+    environment:
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+    volumes:
+      - docker-postgres:/var/lib/postgresql/data
+  web:
+    env_file: .env
+    build: .
+    command: rake db:create && rake db:migrate && rake assets:clobber && rails s -p 4000 -b 0.0.0.0
+    volumes:
+      - .:/transfer
+    ports:
+      - "4000:4000"
+    environment:
+      RAILS_ENV: development
+    depends_on:
+      - db
+    links:
+      - db
+
+volumes:
+  docker-postgres:
