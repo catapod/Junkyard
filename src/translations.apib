@@ -179,6 +179,9 @@ value | Integer | Значение оценки. Может принимать �
 
     + Attributes (Rate)
         + value: 1
+        + material_id: 1 (required, number) - идентификатор материала
+        + slice_id: 2 (required, number) - идентификатор слайса
+        + translation_id: 5 (required, number) - идентификатор варианта перевода
 
 + Request уменьшение рейтинга (application/json)
 
@@ -189,6 +192,9 @@ value | Integer | Значение оценки. Может принимать �
 
     + Attributes (Rate)
         + value: `-1`
+        + material_id (required, number) - Идентификатор материала
+        + slice_id (required, number) - Идентификатор слайса
+        + translation_id (required, number) - Идентификатор перевода
 
 + Response 401 (application/json)
 
