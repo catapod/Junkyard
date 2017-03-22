@@ -43,7 +43,7 @@ annotation_original | String | Аннотация материала на язы
 annotation_translated | String | _Опционально._ Переведенная на русский язык аннотация материала.
 state_id | Integer | _Опционально._ Идентификатор состояния материала. _По-умолчанию ставится идентификатор, соответствующий состоянию `import`_
 license_id | Integer | _Опционально._ Лицензия, под которой распространяется материал. _По-умолчанию ставится лицензия из настроек в системе._
-tags | Array of [MaterialTag](#header-теги-материалов-(materialtag)) | _Опционально._ Теги материала.
+tags | Array of [MaterialTag](#header-теги-материалов-(materialtag)) | _Опционально._ Теги материала. Могут передаваться списком из id, если они уже есть в базе данных, либо объектами, если их не существует.
 
 + Request полная форма (application/json)
 
@@ -55,7 +55,7 @@ tags | Array of [MaterialTag](#header-теги-материалов-(materialtag
         + annotation_original: This lecture introduces Python (required, string) - Аннотация материала на языке оригинала
         + annotation_translated: В данной лекции вводятся понятия языка Python (optional, string) - Переведенная на русский язык аннотация материала
         + license_id: 7123 (optional, number) - идентификатор лицензии
-        + tags (MaterialTags) - массив объектов типа Tag
+        + tags: 1, 43, 23 (MaterialTags) - массив объектов типа Tag
 
 + Response 201 (application/json)
 
