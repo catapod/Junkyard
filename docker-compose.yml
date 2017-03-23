@@ -1,0 +1,26 @@
+version: '2'
+services:
+  db:
+    image: postgres
+    env_file: .env
+    environment:
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+    volumes:
+      - docker-postgres:/var/lib/postgresql/data
+  web:
+    build: .
+    env_file: .env
+    command: rails s -p ${RAILS_PORT} -b 0.0.0.0
+    volumes:
+      - .:/transfer
+    ports:
+      - "${RAILS_PORT}:${RAILS_PORT}"
+    environment:
+      RAILS_ENV: ${RAILS_ENV}
+    depends_on:
+      - db
+    links:
+      - db
+
+volumes:
+  docker-postgres:
