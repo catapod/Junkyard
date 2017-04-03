@@ -125,11 +125,10 @@
 ## Rate (object)
 
 + rate_id: 8762 (required, number) - Уникальный идентификатор оценки
-+ material_id (required, number) - Идентификатор материала
-+ slice_id (required, number) - Идентификатор слайса
-+ translation_id (required, number) - Идентификатор перевода
 + rater (required, User) - Пользователь, поставивший оценку варианту перевода
 + value: 1 (required, number) - Значение оценки
++ created_at (required, number) - Время создания в формате Unix time
++ updated_at (required, number) - Время редактирования в формате Unix time
 
 # Group Типы данных
 Раздел описывает основные типы данных для сервиса.
@@ -291,3 +290,5 @@ updated_at | Integer | Время редактирования в формате
 rate_id | String | Уникальный идентификатор оценки.
 rater | [User](#header-пользователь-(user)) | Пользователь, поставивший оценку варианту перевода.
 value | Integer | Значение оценки.
+created_at | Integer | Время создания в формате Unix time.
+updated_at | Integer | Время редактирования в формате Unix time.
