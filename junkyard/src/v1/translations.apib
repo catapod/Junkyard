@@ -31,15 +31,12 @@ body | String | Значение варианта перевода
 + Request (application/json)
 
     + Attributes (object)
-        + translator_id: 4567 (required, number) - Автор (пользователь портала) варианта перевода
         + body: Хей бро! (required, string) - Перевод слайса
 
 + Response 201 (application/json)
 
     + Attributes (object)
         + translation_id: 987 (required, number) - Уникальный идентификатор варианта перевода
-        + material_id: 1 (required, number) - Идентификатор материала
-        + slice_id: 8712 (required, number) - Идентификатор слайса, которому принадлежит вариант перевода
         + translator (required, User) - Автор (пользователь портала) варианта перевода
         + body: Хей бро! (required, string) - Перевод слайса
         + rating: 0 (required, number) - Усредненное значение пользовательских оценок варианта перевода
@@ -52,7 +49,7 @@ body | String | Значение варианта перевода
             "errors": [
                 {
                     "title": "Invalid attribute.",
-                    "detail": "Field 'translator_id' is required."
+                    "detail": "Field 'body' is required."
                 }
             ]
         }
@@ -95,11 +92,13 @@ body | String | Значение варианта перевода
 
 + Request (application/json)
 
-    + Attributes (Translation)
+    + Attributes (object)
+        + body: Хей бро! (string) - Перевод слайса
 
 + Response 200 (application/json)
 
     + Attributes (Translation)
+        + body: Хей бро! (string) - Перевод слайса
 
 + Response 400 (application/json)
 
@@ -129,7 +128,7 @@ body | String | Значение варианта перевода
 Пользователь должен обладать правами на удаление варианта перевода
 :::
 
-+ Response 200 (application/json)
++ Response 204 (application/json)
 
 + Response 401 (application/json)
 
