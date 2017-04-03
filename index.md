@@ -2,4 +2,4 @@
 
 ## API
 
-- [Схема API v1](https://kursomir.github.io/Transfer/junkyard/api/v1)
+- [Схема REST](https://kursomir.github.io/Transfer/junkyard/api/v1)
