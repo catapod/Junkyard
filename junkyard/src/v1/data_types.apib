@@ -116,10 +116,11 @@
 ## Comment (object)
 
 + comment_id: 123 (required, number) - Уникальный идентификатор комментария
-+ slice_id (required, number) - Идентификатор слайса, которому принадлежит вариант перевода
 + commentator (required, User) - Автор комментария
 + body (required, string) - Текст комментария
 + parent_id (number) - Идентификатор родительского комментария
++ created_at (required, number) - Время создания варианта перевода в формате Unix time
++ updated_at (required, number) - Время редактирования варианта перевода в формате Unix time
 
 ## Rate (object)
 
@@ -278,10 +279,11 @@ avatar | String | Ссылка на аватар.
 Атрибут | Тип | Описание
 --- | --- | ---
 comment_id | Integer | Уникальный идентификатор комментария.
-slice_id | Integer | Идентификатор слайса, которому принадлежит вариант перевода.
 commentator | [User](#header-пользователь-(user)) | Автор комментария.
 body | String | Текст комментария.
-parent_id | Integer | _Опционально._ Идентификатор родительского комментария
+parent_id | Integer | _Опционально._ Идентификатор родительского комментария.
+created_at | Integer | Время создания в формате Unix time.
+updated_at | Integer | Время редактирования в формате Unix time.
 
 ## Оценка рейтинга (Rate)
 Пользовательская оценка варианта перевода, может принимать значение `+1`/`-1`.
