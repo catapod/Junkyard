@@ -11,8 +11,7 @@ class CreateMaterials < ActiveRecord::Migration[5.0]
       t.references :state, index: true, foreign_key: { to_table: :states }
       t.references :license, index: true, foreign_key: { to_table: :licenses }
       t.string :original_language, null: false
-      t.string :translated_language, null: false
-      t.string :translated_language, null: false
+      t.string :translation_language, null: false
       t.string :tags, array: true, null: false
       t.timestamps
     end
