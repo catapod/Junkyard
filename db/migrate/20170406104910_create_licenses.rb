@@ -4,7 +4,6 @@ class CreateLicenses < ActiveRecord::Migration[5.0]
       t.string :name, null: false
       t.string :link, null: true
       t.text :content, null: false
-      t.timestamps
     end
   end
 end
