@@ -3,7 +3,6 @@ class CreateStates < ActiveRecord::Migration[5.0]
     create_table :states do |t|
       t.string :name, null: false
       t.string :display_name, null: false
-      t.timestamps
     end
   end
 end
