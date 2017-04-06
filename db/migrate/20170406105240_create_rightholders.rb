@@ -7,7 +7,6 @@ class CreateRightholders < ActiveRecord::Migration[5.0]
       t.string :short_translated, null: true
       t.string :link, null: true
       t.string :icon, null: true
-      t.timestamps
     end
   end
 end
