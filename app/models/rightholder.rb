@@ -1,0 +1,2 @@
+class Rightholder < ApplicationRecord
+end
