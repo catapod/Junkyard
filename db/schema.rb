@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406110610) do
+ActiveRecord::Schema.define(version: 20170406110809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,16 @@ ActiveRecord::Schema.define(version: 20170406110610) do
     t.index ["owner_id"], name: "index_materials_on_owner_id", using: :btree
     t.index ["rightholder_id"], name: "index_materials_on_rightholder_id", using: :btree
     t.index ["state_id"], name: "index_materials_on_state_id", using: :btree
+  end
+
+  create_table "rates", force: :cascade do |t|
+    t.integer  "rater_id"
+    t.integer  "value",          null: false
+    t.integer  "translation_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["rater_id"], name: "index_rates_on_rater_id", using: :btree
+    t.index ["translation_id"], name: "index_rates_on_translation_id", using: :btree
   end
 
   create_table "rightholders", force: :cascade do |t|
@@ -109,5 +119,6 @@ ActiveRecord::Schema.define(version: 20170406110610) do
 
   add_foreign_key "comments", "users", column: "commentator_id"
   add_foreign_key "materials", "users", column: "owner_id"
+  add_foreign_key "rates", "users", column: "rater_id"
   add_foreign_key "translations", "users", column: "translator_id"
 end
