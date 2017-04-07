@@ -1,6 +1,7 @@
 class Material < ApplicationRecord
-  include Associate
-
-  associate :has_one, [:license, :user, :rightholder, :state], dependent: :destroy
+  has_one :license, dependent: :destroy
+  has_one :user, dependent: :destroy
+  has_one :rightholder, dependent: :destroy
+  has_one :state, dependent: :destroy
   has_many :slices, dependent: :destroy
 end

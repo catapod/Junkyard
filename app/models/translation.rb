@@ -1,5 +1,4 @@
 class Translation < ApplicationRecord
-  include Associate
-
-  associate, :belongs_to, [:slice, :user], dependent: :destroy
+  belongs_to :slice, dependent: :destroy
+  belongs_to :user, dependent: :destroy
 end

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  include Associate
-
-  associate :has_many, [:materials, :comments, :rates, :translations], dependent: :destroy
+  has_many :materials, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :rates, dependent: :destroy
+  has_many :translations, dependent: :destroy
 end

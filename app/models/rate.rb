@@ -1,5 +1,4 @@
 class Rate < ApplicationRecord
-  include Associate
-
-  associate :belongs_to, [:user, :translation], dependent: :destroy
+  belongs_to :user, dependent: :destroy
+  belongs_to :translation, dependent: :destroy
 end

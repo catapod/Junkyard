@@ -1,5 +1,4 @@
 class Comment < ApplicationRecord
-  include Associate
-
-  associate :belongs_to, [:user, :slice], dependent: :destroy
+  belongs_to :user, dependent: :destroy
+  belongs_to :slice, dependent: :destroy
 end
