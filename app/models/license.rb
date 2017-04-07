@@ -1,3 +1,3 @@
 class License < ApplicationRecord
-  belongs_to :material
+  has_many :materials
 end

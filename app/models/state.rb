@@ -1,3 +1,3 @@
 class State < ApplicationRecord
-  belongs_to :material, dependent: :destroy
+  has_many :materials, dependent: :destroy
 end
