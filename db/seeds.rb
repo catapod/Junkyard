@@ -16,3 +16,13 @@ State.create(
     { name: 'published', display_name: 'Публикация' }
   ]
 )
+
+ChunkType.create(
+  [
+    { name: 'text', display_name: 'Текст' },
+    { name: 'image', display_name: 'Изображение' },
+    { name: 'latex', display_name: 'LaTeX' },
+    { name: 'audio', display_name: 'Аудиозапись' },
+    { name: 'video', display_name: 'Видеозапись' }
+  ]
+)
