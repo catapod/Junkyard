@@ -1,15 +1,15 @@
 # Group Варианты переводов
 ::: note
-У каждого *переводимого* **слайса** может быть несколько **вариантов перевода**
+У каждого *переводимого* **чанка** может быть несколько **вариантов перевода**
 от нескольких переводчиков. У каждого **варианта перевода** есть свой **рейтинг**
 выставляемый другими переводчиками, редакторами и прочими участниками проекта.
 :::
 
-## Варианты переводов [/materials/{material_id}/slices/{slice_id}/translations]
+## Варианты переводов [/materials/{material_id}/chunks/{chunk_id}/translations]
 
 + Parameters
     + material_id: 1 (required, number) - идентификатор материала
-    + slice_id: 8712 (required, number) - идентификатор слайса
+    + chunk_id: 8712 (required, number) - идентификатор чанка
 
 ### Список вариантов переводов [GET]
 
@@ -30,14 +30,14 @@ body | String | Значение варианта перевода
 + Request (application/json)
 
     + Attributes (object)
-        + body: Хей бро! (required, string) - Перевод слайса
+        + body: Хей бро! (required, string) - Перевод чанка
 
 + Response 201 (application/json)
 
     + Attributes (object)
         + translation_id: 987 (required, number) - Уникальный идентификатор варианта перевода
         + translator (required, User) - Автор (пользователь портала) варианта перевода
-        + body: Хей бро! (required, string) - Перевод слайса
+        + body: Хей бро! (required, string) - Перевод чанка
         + rating: 0 (required, number) - Усредненное значение пользовательских оценок варианта перевода
         + created_at: 1489663450223 (required, number) - Время создания варианта перевода в формате Unix time
         + updated_at: 1489663450223 (required, number) - Время редактирования варианта перевода в формате Unix time
@@ -53,11 +53,11 @@ body | String | Значение варианта перевода
             ]
         }
 
-## Вариант перевода [/materials/{material_id}/slices/{slice_id}/translations/{translation_id}]
+## Вариант перевода [/materials/{material_id}/chunks/{chunk_id}/translations/{translation_id}]
 
 + Parameters
     + material_id: 1 (required, number) - идентификатор материала
-    + slice_id: 2 (required, number) - идентификатор слайса
+    + chunk_id: 2 (required, number) - идентификатор чанка
     + translation_id: 5 (required, number) - идентификатор варианта перевода
 
 ### Получить вариант перевода [GET]
@@ -92,12 +92,12 @@ body | String | Значение варианта перевода
 + Request (application/json)
 
     + Attributes (object)
-        + body: Хей бро! (string) - Перевод слайса
+        + body: Хей бро! (string) - Перевод чанка
 
 + Response 200 (application/json)
 
     + Attributes (Translation)
-        + body: Хей бро! (string) - Перевод слайса
+        + body: Хей бро! (string) - Перевод чанка
 
 + Response 400 (application/json)
 
@@ -151,11 +151,11 @@ body | String | Значение варианта перевода
             ]
         }
 
-## Рейтинг [/materials/{material_id}/slices/{slice_id}/translations/{translation_id}/rate]
+## Рейтинг [/materials/{material_id}/chunks/{chunk_id}/translations/{translation_id}/rate]
 
 + Parameters
     + material_id: 1 (required, number) - идентификатор материала
-    + slice_id: 2 (required, number) - идентификатор слайса
+    + chunk_id: 2 (required, number) - идентификатор чанка
     + translation_id: 5 (required, number) - идентификатор варианта перевода
 
 ### Изменить рейтинг [POST]
