@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# States
+State.create(
+  [
+    { name: 'import', display_name: 'Импорт' },
+    { name: 'translate', display_name: 'Перевод' },
+    { name: 'edit', display_name: 'Редактура' },
+    { name: 'markup', display_name: 'Верстка' },
+    { name: 'published', display_name: 'Публикация' }
+  ]
+)
