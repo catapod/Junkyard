@@ -33,11 +33,15 @@ class Api::MaterialsController < Api::ApiController
 
     def material_params
       params.permit(
+        :rightholder_id,
+        :owner_id,
         :original_link,
         :caption_original,
         :caption_translated,
         :annotation_original,
         :annotation_translated,
+        :state_id,
+        :license_id,
         :original_language,
         :translation_language,
         :tags
