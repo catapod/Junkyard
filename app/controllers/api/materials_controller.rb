@@ -1,22 +1,35 @@
-class Api::MaterialsController < ApplicationController
-  skip_before_action :verify_authenticity_token
+class Api::MaterialsController < ApiController
+  before_action :set_material, only: [:show, :update, :destroy]
   
   def index
+    @materials = Material.all
+    json_response(@todos)
   end
 
   def create
-  end
-
-  def update
-  end
-
-  def destroy
+    @material = Material.create!(material_params)
+    json_response(@material, :created)
   end
 
   def show
+    json_response(@material)
+  end
+
+  def update
+    @material.update(material_params)
+    head :no_content
+  end
+
+  def destroy
+    @material.destroy
+    head :no_content
   end
 
   private
+
+    def set_material
+      @material = Material.find(params[:id])
+    end
 
     def material_params
       params.permit(
