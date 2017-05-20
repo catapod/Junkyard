@@ -4,7 +4,7 @@ class Material < ApplicationRecord
   belongs_to :license
   belongs_to :state
 
-  has_many :slices
+  has_many :chunks
 
   validates :owner, presence: true
   validates :rightholder, presence: true
