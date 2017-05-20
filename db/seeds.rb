@@ -26,3 +26,13 @@ ChunkType.create(
     { name: 'video', display_name: 'Видеозапись' }
   ]
 )
+
+User.create(
+  [
+    { nickname: 'catapod' },
+    { nickname: 'basavind' },
+    { nickname: 'mixty' },
+    { nickname: 'zverart' },
+    { nickname: 'garold' }
+  ]
+)
