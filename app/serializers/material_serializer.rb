@@ -15,5 +15,5 @@ class MaterialSerializer < ActiveModel::Serializer
     :tags
   )
 
-  has_many :slices
+  has_many :chunks
 end
