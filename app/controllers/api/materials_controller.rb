@@ -3,7 +3,7 @@ class Api::MaterialsController < Api::ApiController
   
   def index
     @materials = Material.all
-    json_response(@todos)
+    json_response(@materials)
   end
 
   def create
