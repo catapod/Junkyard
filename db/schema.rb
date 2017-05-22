@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 20170406110809) do
     t.integer  "chunk_id"
     t.integer  "commentator_id"
     t.text     "body",           null: false
-    t.integer  "parent_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.index ["chunk_id"], name: "index_comments_on_chunk_id", using: :btree
