@@ -31,7 +31,7 @@ class Api::ChunksController < Api::ApiController
       @chunk = Chunk.find(params[:id])
     end
 
-    def material_params
+    def chunk_params
       params.permit(
         :material_id,
         :material_position,
