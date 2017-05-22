@@ -1,6 +1,6 @@
 class Api::TranslationsController < Api::ApiController
   before_action :set_translation, only: [:show, :update, :destroy]
-  
+
   def index
     @translations = Translation.all
     json_response(@translations)
@@ -27,14 +27,14 @@ class Api::TranslationsController < Api::ApiController
 
   private
 
-    def set_translation
-      @translation = Translation.find(params[:id])
-    end
+  def set_translation
+    @translation = Translation.find(params[:id])
+  end
 
-    def translation_params
-      params.permit(
-        :translator_id,
-        :body
-      )      
-    end
+  def translation_params
+    params.permit(
+      :translator_id,
+      :body
+    )
+  end
 end

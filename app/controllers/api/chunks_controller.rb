@@ -1,6 +1,6 @@
 class Api::ChunksController < Api::ApiController
   before_action :set_chunk, only: [:show, :update, :destroy]
-  
+
   def index
     @chunks = Chunk.all
     json_response(@chunks)
@@ -27,17 +27,17 @@ class Api::ChunksController < Api::ApiController
 
   private
 
-    def set_chunk
-      @chunk = Chunk.find(params[:id])
-    end
+  def set_chunk
+    @chunk = Chunk.find(params[:id])
+  end
 
-    def chunk_params
-      params.permit(
-        :material_id,
-        :material_position,
-        :chunk_type_id,
-        :translatable,
-        :body
-      )      
-    end
+  def chunk_params
+    params.permit(
+      :material_id,
+      :material_position,
+      :chunk_type_id,
+      :translatable,
+      :body
+    )
+  end
 end

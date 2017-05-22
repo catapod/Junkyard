@@ -1,6 +1,6 @@
 class Api::CommentsController < Api::ApiController
   before_action :set_comment, only: [:show, :update, :destroy]
-  
+
   def index
     @comments = Comment.all
     json_response(@comments)
@@ -27,14 +27,14 @@ class Api::CommentsController < Api::ApiController
 
   private
 
-    def set_comment
-      @comment = Comment.find(params[:id])
-    end
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
 
-    def comment_params
-      params.permit(
-        :commentator_id,
-        :body
-      )      
-    end
+  def comment_params
+    params.permit(
+      :commentator_id,
+      :body
+    )
+  end
 end
