@@ -20,7 +20,7 @@ class Api::MaterialsController < Api::ApiController
 
   def update
     @material.update(material_params)
-    json_response(material_params)
+    json_response(@material)
   end
 
   def destroy
