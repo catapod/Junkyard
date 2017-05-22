@@ -1,4 +1,4 @@
-class Api::ChunksController < ApplicationController
+class Api::ChunksController < Api::ApiController
   before_action :set_chunk, only: [:show, :update, :destroy]
   
   def index
