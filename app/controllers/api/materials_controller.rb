@@ -9,7 +9,7 @@ class Api::MaterialsController < Api::ApiController
   def create
     tags = material_params.delete('tags').map { |t| MaterialTag.create!(t).id }
     @material = Material.new(material_params)
-    @material.tags = @tags
+    @material.tags = tags
     @material.save!
     json_response(@material, :created)
   end
