@@ -11,5 +11,6 @@ FactoryGirl.define do
     license_id 2
     original_language { Faker::Hipster.word }
     translation_language { Faker::Hipster.word }
+    tags { [1, 3, 2] } 
   end
 end
