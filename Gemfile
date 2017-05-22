@@ -20,7 +20,10 @@ gem 'uglifier', '>= 1.3.0'
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails', '~> 3.5'
-  gem 'shoulda-matchers', '~> 3.0'
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'factory_girl_rails', '~> 4.0'
+  gem 'faker'
+  gem 'database_cleaner'
 end
 
 group :development do
