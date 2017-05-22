@@ -33,7 +33,6 @@ class Api::CommentsController < Api::ApiController
 
     def comment_params
       params.permit(
-        :chunk_id,
         :commentator_id,
         :body
       )      

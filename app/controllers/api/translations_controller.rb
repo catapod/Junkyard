@@ -33,7 +33,6 @@ class Api::TranslationsController < Api::ApiController
 
     def translation_params
       params.permit(
-        :chunk_id,
         :translator_id,
         :body
       )      
