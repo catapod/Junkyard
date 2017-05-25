@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Api::MaterialsController, type: :controller do
   before(:all) do
     create_list(:user, 5)
-    create_list(:state, 5)
     create_list(:rightholder, 5)
     create_list(:license, 5)
   end
