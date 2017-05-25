@@ -25,8 +25,8 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   
   config.before(:suite) do
-    DatabaseCleaner.clean_with(:truncation)
     DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation, { except: %w[chunk_types states] })
   end
 
   config.around(:each) do |example|
