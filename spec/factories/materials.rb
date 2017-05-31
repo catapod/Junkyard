@@ -12,5 +12,14 @@ FactoryGirl.define do
     original_language { Faker::Hipster.word }
     translation_language { Faker::Hipster.word }
     tags { [1, 3, 2] }
+    factory :material_with_chunks do
+      transient do
+        chunks_count 5
+      end
+
+      after(:create) do |material, evaluator|
+        create_list(:chunk, evaluator.chunks_count, material: material)
+      end
+    end
   end
 end
