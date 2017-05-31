@@ -6,6 +6,7 @@ RSpec.describe Api::MaterialsController, type: :controller do
     create_list(:rightholder, 5)
     create_list(:license, 5)
   end
+  
   let!(:materials) { create_list(:material, 10) }
   let(:material_id) { materials.first.id }
 
