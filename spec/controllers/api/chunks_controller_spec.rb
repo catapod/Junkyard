@@ -7,12 +7,7 @@ RSpec.describe Api::ChunksController, type: :controller do
     create_list(:license, 5)
   end
 
-  let!(:materials) do
-    create_list(:material, 10) do |material|
-      material.chunks.create(attributes_for(:chunk))
-    end
-  end
-
+  let!(:materials) { create_list(:material_with_chunks, 10) }
   let(:material_id) { materials.first.id }
   let(:chunk_id) { materials.first.chunks.first.id }
   let(:chunk_params) { { material_id: material_id, id: chunk_id } }
@@ -22,7 +17,7 @@ RSpec.describe Api::ChunksController, type: :controller do
 
     it 'returns chunks' do
       expect(json).not_to be_empty
-      expect(json.size).to eq(10)
+      expect(json.size).to eq(5)
     end
 
     it 'returns status code 200' do
