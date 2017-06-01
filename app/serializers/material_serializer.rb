@@ -7,8 +7,7 @@ class MaterialSerializer < ActiveModel::Serializer
     :annotation_original,
     :annotation_translated,
     :original_language,
-    :translation_language,
-    :tags
+    :translation_language
   )
 
   belongs_to :rightholder
@@ -17,4 +16,5 @@ class MaterialSerializer < ActiveModel::Serializer
   belongs_to :license
 
   has_many :chunks
+  has_many :tags
 end
