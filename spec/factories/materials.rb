@@ -18,7 +18,7 @@ FactoryGirl.define do
       end
 
       after :create do |material, evaluator|
-        create_list(:chunk_with_comments, evaluator.chunks_count, material: material)
+        create_list(:chunk_with_comments_and_translations, evaluator.chunks_count, material: material)
       end
     end
   end
