@@ -2,7 +2,7 @@ class Api::CommentsController < Api::ApiController
   before_action :set_comment, only: [:show, :update, :destroy]
 
   def index
-    @comments = Comment.all
+    @comments = Chunk.find(params['chunk_id']).comments
     json_response(@comments)
   end
 
@@ -34,6 +34,7 @@ class Api::CommentsController < Api::ApiController
   def comment_params
     params.permit(
       :commentator_id,
+      :chunk_id,
       :body
     )
   end
