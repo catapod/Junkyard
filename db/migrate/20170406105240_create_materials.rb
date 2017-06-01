@@ -12,7 +12,6 @@ class CreateMaterials < ActiveRecord::Migration[5.0]
       t.belongs_to :license, index: true
       t.string :original_language, null: false
       t.string :translation_language, null: false
-      t.integer :tags, array: true, null: false
       t.timestamps
     end
   end
