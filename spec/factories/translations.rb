@@ -1,0 +1,7 @@
+FactoryGirl.define do
+  factory :translation do
+    chunk
+    association :translator, factory: :user
+    body { Faker::ChuckNorris.fact }
+  end
+end
