@@ -2,7 +2,7 @@ class Api::TranslationsController < Api::ApiController
   before_action :set_translation, only: [:show, :update, :destroy]
 
   def index
-    @translations = Translation.all
+    @translations = Chunk.find(params['chunk_id']).translations
     json_response(@translations)
   end
 
@@ -34,6 +34,7 @@ class Api::TranslationsController < Api::ApiController
   def translation_params
     params.permit(
       :translator_id,
+      :chunk_id,
       :body
     )
   end
