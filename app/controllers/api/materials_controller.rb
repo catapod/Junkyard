@@ -3,12 +3,11 @@ class Api::MaterialsController < Api::ApiController
 
   def index
     @materials = Material.all
-    json_response(@materials)
+    json_response @materials
   end
 
   def create
-    @material = Material.new(material_params)
-
+    @material = Material.new material_params
     unless tag_params['tags'].blank?
       tags = tag_params['tags'].map do |tag|
         if tag.size == 1 && tag.has_key?('id')
@@ -17,21 +16,38 @@ class Api::MaterialsController < Api::ApiController
           MaterialTag.create! tag
         end
       end
-  
+
       @material.tags << tags
     end
-
     @material.save!
-    json_response(@material, :created)
+    json_response @material, :created
   end
 
   def show
-    json_response(@material)
+    json_response @material
   end
 
   def update
-    @material.update(material_params)
-    json_response(@material)
+    unless tag_params['tags'].blank?
+      @material.assign_attributes material_params
+
+      tag_params['tags'].map do |tag|
+        if tag.size == 1 && tag.has_key?('id')
+          if @material.tags.find_by(id: tag['id']).blank?
+            @material.tags << MaterialTag.find(tag['id'])
+          end
+        elsif tag.size > 1 && tag.has_key?('id')
+          MaterialTag.find(tag['id']).update(tag.except!(:id))
+        else
+          @material.tags << MaterialTag.create!(tag)
+        end
+      end
+
+      @material.save!
+    else
+      @material.update material_params
+    end
+    json_response @material
   end
 
   def destroy
@@ -42,7 +58,7 @@ class Api::MaterialsController < Api::ApiController
   private
 
   def set_material
-    @material = Material.find(params[:id])
+    @material = Material.find params[:id]
   end
 
   def material_params
