@@ -89,7 +89,7 @@ RSpec.describe Api::ChunksController, type: :controller do
   end
 
   describe 'PUT api/materials/:material_id/chunks/:id' do
-    let(:valid_attributes) { { **chunk_params, body: 'Updated caption_original' } }
+    let(:valid_attributes) { { **chunk_params, body: 'Updated body' } }
 
     context 'when the record exists' do
       before { put :update, params: valid_attributes }
