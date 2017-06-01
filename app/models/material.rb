@@ -6,6 +6,8 @@ class Material < ApplicationRecord
 
   has_many :chunks
 
+  has_and_belongs_to_many :tags, class_name: 'MaterialTag'
+
   validates :owner, presence: true
   validates :rightholder, presence: true
   validates :license, presence: true
