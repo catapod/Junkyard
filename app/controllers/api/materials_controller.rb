@@ -8,17 +8,7 @@ class Api::MaterialsController < Api::ApiController
 
   def create
     @material = Material.new material_params
-    unless tag_params['tags'].blank?
-      tags = tag_params['tags'].map do |tag|
-        if tag.size == 1 && tag.has_key?('id')
-          MaterialTag.find tag['id']
-        else
-          MaterialTag.create! tag
-        end
-      end
-
-      @material.tags << tags
-    end
+    process_tags
     @material.save!
     json_response @material, :created
   end
@@ -28,21 +18,9 @@ class Api::MaterialsController < Api::ApiController
   end
 
   def update
-    unless tag_params['tags'].blank?
+    unless permitted_tags['tags'].blank?
       @material.assign_attributes material_params
-
-      tag_params['tags'].map do |tag|
-        if tag.size == 1 && tag.has_key?('id')
-          if @material.tags.find_by(id: tag['id']).blank?
-            @material.tags << MaterialTag.find(tag['id'])
-          end
-        elsif tag.size > 1 && tag.has_key?('id')
-          MaterialTag.find(tag['id']).update(tag.except!(:id))
-        else
-          @material.tags << MaterialTag.create!(tag)
-        end
-      end
-
+      process_tags
       @material.save!
     else
       @material.update material_params
@@ -77,7 +55,23 @@ class Api::MaterialsController < Api::ApiController
     )
   end
 
-  def tag_params
+  def permitted_tags
     params.permit tags: [:id, :name, :display_name, :body]
+  end
+
+  def process_tags
+    unless permitted_tags['tags'].blank?
+      permitted_tags['tags'].map do |tag|
+        if tag.size == 1 && tag.has_key?('id')
+          if @material.tags.find_by(id: tag['id']).blank?
+            @material.tags << MaterialTag.find(tag['id'])
+          end
+        elsif tag.size > 1 && tag.has_key?('id')
+          MaterialTag.find(tag['id']).update(tag.except!(:id))
+        else
+          @material.tags << MaterialTag.create!(tag)
+        end
+      end
+    end
   end
 end
