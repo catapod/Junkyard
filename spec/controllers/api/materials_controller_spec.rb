@@ -5,6 +5,7 @@ RSpec.describe Api::MaterialsController, type: :controller do
     create_list(:user, 5)
     create_list(:rightholder, 5)
     create_list(:license, 5)
+    create_list(:material_tag, 5)
   end
   
   let!(:materials) { create_list(:material, 10) }
@@ -74,6 +75,15 @@ RSpec.describe Api::MaterialsController, type: :controller do
             name: 'course',
             display_name: 'курс',
             body: 'Electrical Engineering and Computer Science'
+          },
+          {
+            id: 2,
+            name: 'course2',
+            display_name: 'курс2',
+            body: 'Electrical Engineering and Computer Science'
+          },
+          {
+            id: 1
           }
         ]
       }
@@ -92,7 +102,7 @@ RSpec.describe Api::MaterialsController, type: :controller do
     end
 
     context 'when the request is invalid' do
-      before { post :create, params: { caption_original: 'test', tags: [1] } }
+      before { post :create, params: { caption_original: 'test' } }
 
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
@@ -100,6 +110,18 @@ RSpec.describe Api::MaterialsController, type: :controller do
 
       it 'returns a validation failure message' do
         expect(response.body).to match(/Validation failed/)
+      end
+    end
+
+    context 'when the tags is not exists' do
+      before { post :create, params: { caption_original: 'test', tags: [{ id: 200 }] } }
+
+      it 'returns status code 404' do
+        expect(response).to have_http_status(404)
+      end
+
+      it 'returns not found message' do
+        expect(response.body).to match(/Couldn't find MaterialTag/)
       end
     end
   end

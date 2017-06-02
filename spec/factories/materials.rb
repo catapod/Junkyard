@@ -11,7 +11,6 @@ FactoryGirl.define do
     license
     original_language { Faker::Hipster.word }
     translation_language { Faker::Hipster.word }
-    tags { [1, 3, 2] }
     factory :material_with_chunks do
       transient do
         chunks_count 5
