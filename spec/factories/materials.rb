@@ -7,7 +7,7 @@ FactoryGirl.define do
     caption_translated { Faker::StarWars.character }
     annotation_original { Faker::StarWars.quote }
     annotation_translated { Faker::StarWars.quote }
-    state_id 1
+    state
     license
     original_language { Faker::Hipster.word }
     translation_language { Faker::Hipster.word }
