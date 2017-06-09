@@ -1,41 +1,44 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe Api::ChunksController, type: :controller do
-  before(:all) do
-    create_list(:user, 5)
-    create_list(:rightholder, 5)
-    create_list(:license, 5)
-  end
-
-  let!(:materials) { create_list(:material_with_chunks, 10) }
-  let(:material_id) { materials.first.id }
-  let(:chunk_id) { materials.first.chunks.first.id }
-  let(:chunk_params) { { material_id: material_id, id: chunk_id } }
+  let(:material) { create(:material) }
+  let(:material_id) { material.id }
 
   describe 'GET api/materials/:material_id/chunks' do
     before { get :index, params: { material_id: material_id } }
 
-    it 'returns chunks' do
-      expect(json).not_to be_empty
-      expect(json.size).to eq(5)
-    end
-
     it 'returns status code 200' do
       expect(response).to have_http_status(200)
+    end
+
+    context 'when there are chunks' do
+      it 'returns chunks' do
+        create_list(:chunk, 5, material: material)
+
+        # call get once more to get chunks after initialization
+        get :index, params: { material_id: material_id }
+
+        expect(json).not_to be_empty
+        expect(json.size).to eq(5)
+      end
     end
   end
 
   describe 'GET api/materials/:material_id/chunks/:id' do
-    before { get :show, params: chunk_params }
+    before { get :show, params: { material_id: material_id, id: chunk_id } }
 
     context 'when the record exists' do
-      it 'returns the chunk' do
-        expect(json).not_to be_empty
-        expect(json['id']).to eq(chunk_id)
-      end
+      let(:chunk) { create(:chunk, material: material) }
+      let(:chunk_id) { chunk.id }
 
       it 'returns status code 200' do
         expect(response).to have_http_status(200)
+      end
+
+      it 'returns the chunk' do
+        expect(json).not_to be_empty
+        expect(json['id']).to eq(chunk_id)
       end
     end
 
@@ -53,11 +56,12 @@ RSpec.describe Api::ChunksController, type: :controller do
   end
 
   describe 'POST api/materials/:material_id/chunks' do
+    let(:chunk_type) { create(:chunk_type) }
     let :valid_attributes do
       {
-        **chunk_params,
+        material_id: material_id,
         material_position: 1,
-        chunk_type_id: 2,
+        chunk_type_id: chunk_type.id,
         translatable: true,
         body: 'Chuck Norris can solve the Towers of Hanoi in one move.'
       }
@@ -66,12 +70,12 @@ RSpec.describe Api::ChunksController, type: :controller do
     context 'when the request is valid' do
       before { post :create, params: valid_attributes }
 
-      it 'creates a chunk' do
-        expect(json['body']).to eq('Chuck Norris can solve the Towers of Hanoi in one move.')
-      end
-
       it 'returns status code 201' do
         expect(response).to have_http_status(201)
+      end
+
+      it 'creates a chunk' do
+        expect(json['body']).to eq('Chuck Norris can solve the Towers of Hanoi in one move.')
       end
     end
 
@@ -89,26 +93,53 @@ RSpec.describe Api::ChunksController, type: :controller do
   end
 
   describe 'PUT api/materials/:material_id/chunks/:id' do
-    let(:valid_attributes) { { **chunk_params, body: 'Updated body' } }
-
     context 'when the record exists' do
-      before { put :update, params: valid_attributes }
-
-      it 'updated the record' do
-        expect(json).not_to be_empty
+      let(:chunk) { create(:chunk, material: material) }
+      let(:valid_attributes) do
+        {
+          material_id: material_id,
+          id: chunk.id,
+          body: 'Updated body'
+        }
       end
+
+      before { put :update, params: valid_attributes }
 
       it 'returns status code 200' do
         expect(response).to have_http_status(200)
+      end
+
+      it 'updates the record' do
+        expect(json).not_to be_empty
+        expect(json['body']).to eq('Updated body')
+      end
+    end
+
+    context 'when the record not exists' do
+      before { put :update, params: { material_id: material_id, id: 666 } }
+
+      it 'returns status code 404' do
+        expect(response).to have_http_status(404)
       end
     end
   end
 
   describe 'DELETE api/materials/:material_id/chunks/:id' do
-    before { delete :destroy, params: chunk_params }
+    context 'when material exists' do
+      let(:chunk) { create(:chunk, material: material) }
 
-    it 'returns status code 204' do
-      expect(response).to have_http_status(204)
+      before { delete :destroy, params: { material_id: material_id, id: chunk.id } }
+
+      it 'returns status code 204' do
+        expect(response).to have_http_status(204)
+      end
+    end
+    context 'when material exists' do
+      before { delete :destroy, params: { material_id: material_id, id: 666 } }
+
+      it 'returns statis code 404' do
+        expect(response).to have_http_status(404)
+      end
     end
   end
 end
