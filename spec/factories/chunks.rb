@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :chunk do
     material_position { Faker::Number.between(1, 5) }
-    chunk_type_id 2
+    chunk_type
     translatable true
     body { Faker::ChuckNorris.fact }
     factory :chunk_with_comments_and_translations do
