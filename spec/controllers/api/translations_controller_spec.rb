@@ -1,47 +1,39 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe Api::TranslationsController, type: :controller do
-  before(:all) do
-    create_list(:user, 5)
-    create_list(:rightholder, 5)
-    create_list(:license, 5)
-  end
-
-  let!(:materials) { create_list(:material_with_chunks, 10) }
-  let(:material_id) { materials.first.id }
-  let(:chunk_id) { materials.first.chunks.first.id }
-  let(:translation_id) { materials.first.chunks.first.translations.first.id }
-  let(:translation_params) { { material_id: material_id, chunk_id: chunk_id, id: translation_id } }
+  let!(:material) { create(:material) }
+  let(:chunk) { create(:chunk, material: material) }
+  let(:route_params) { { material_id: material.id, chunk_id: chunk.id } }
 
   describe 'GET api/materials/:material_id/chunks/:chunk_id/translations' do
-    before { get :index, params: translation_params.except!(:id) }
-
-    it 'returns translations' do
-      expect(json).not_to be_empty
-      expect(json.size).to eq(5)
-    end
+    before { get :index, params: route_params }
 
     it 'returns status code 200' do
       expect(response).to have_http_status(200)
     end
-  end
 
-  describe 'GET api/materials/:material_id/chunks/:chunk_id/translations/:id' do
-    before { get :show, params: translation_params }
-
-    context 'when the record exists' do
-      it 'returns the translation' do
-        expect(json).not_to be_empty
-        expect(json['id']).to eq(translation_id)
-      end
-
-      it 'returns status code 200' do
-        expect(response).to have_http_status(200)
+    context 'when the chunk has no translations' do
+      it 'returns empty response' do
+        expect(json).to be_empty
       end
     end
 
-    context 'when the record does not exist' do
-      let(:translation_id) { 200 }
+    context 'when the chunk has translations' do
+      it 'returns translations' do
+        create_list(:translation, 5, chunk: chunk)
+
+        get :index, params: route_params
+
+        expect(json).not_to be_empty
+        expect(json.size).to eq(5)
+      end
+    end
+  end
+
+  describe 'GET api/materials/:material_id/chunks/:chunk_id/translations/:id' do
+    context 'when the translation does not exist' do
+      before { get :show, params: { **route_params, id: 666 } }
 
       it 'returns status code 404' do
         expect(response).to have_http_status(404)
@@ -51,13 +43,29 @@ RSpec.describe Api::TranslationsController, type: :controller do
         expect(response.body).to match(/Couldn't find Translation/)
       end
     end
+
+    context 'when the translation exists' do
+      let(:translation) { create(:translation, chunk: chunk) }
+
+      before { get :show, params: { **route_params, id: translation.id } }
+
+      it 'returns status code 200' do
+        expect(response).to have_http_status(200)
+      end
+
+      it 'returns the translation' do
+        expect(json).not_to be_empty
+        expect(json['id']).to eq(translation.id)
+      end
+    end
   end
 
   describe 'POST api/materials/:material_id/chunks/:chunk_id/translations' do
+    let(:translator) { create(:user) }
     let :valid_attributes do
       {
-        **translation_params.except!(:id),
-        translator_id: 1,
+        **route_params,
+        translator_id: translator.id,
         body: 'Chuck Norris can solve the Towers of Hanoi in one move.'
       }
     end
@@ -65,17 +73,17 @@ RSpec.describe Api::TranslationsController, type: :controller do
     context 'when the request is valid' do
       before { post :create, params: valid_attributes }
 
-      it 'creates a translation' do
-        expect(json['body']).to eq('Chuck Norris can solve the Towers of Hanoi in one move.')
-      end
-
       it 'returns status code 201' do
         expect(response).to have_http_status(201)
+      end
+
+      it 'creates a translation' do
+        expect(json['body']).to eq('Chuck Norris can solve the Towers of Hanoi in one move.')
       end
     end
 
     context 'when the request is invalid' do
-      before { post :create, params: { body: 'test', **translation_params.except!(:id) } }
+      before { post :create, params: valid_attributes.except(:body) }
 
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
@@ -88,26 +96,53 @@ RSpec.describe Api::TranslationsController, type: :controller do
   end
 
   describe 'PUT api/materials/:material_id/chunks/:chunk_id/translations/:id' do
-    let(:valid_attributes) { { **translation_params, body: 'Updated body' } }
+    let(:translation) { create(:translation, chunk: chunk) }
+    let(:valid_attributes) do
+      {
+        **route_params,
+        id: translation.id,
+        body: 'Updated body'
+      }
+    end
 
-    context 'when the record exists' do
+    context 'when the translation exists' do
       before { put :update, params: valid_attributes }
-
-      it 'updated the record' do
-        expect(json).not_to be_empty
-      end
 
       it 'returns status code 200' do
         expect(response).to have_http_status(200)
+      end
+
+      it 'updates the translation' do
+        expect(json).not_to be_empty
+        expect(json['body']).to eq('Updated body')
+      end
+    end
+
+    context 'when the translation does not exists' do
+      before { put :update, params: { **route_params, id: 666 } }
+
+      it 'returns status code 404' do
+        expect(response).to have_http_status(404)
       end
     end
   end
 
   describe 'DELETE api/materials/:material_id/chunks/:chunk_id/translations/:id' do
-    before { delete :destroy, params: translation_params }
+    context 'when the translation exists' do
+      let(:translation) { create(:translation, chunk: chunk) }
+      before { delete :destroy, params: { **route_params, id: translation.id } }
 
-    it 'returns status code 204' do
-      expect(response).to have_http_status(204)
+      it 'returns status code 204' do
+        expect(response).to have_http_status(204)
+      end
+    end
+
+    context 'when the translation does not exists' do
+      before { put :update, params: { **route_params, id: 666 } }
+
+      it 'returns status code 404' do
+        expect(response).to have_http_status(404)
+      end
     end
   end
 end
