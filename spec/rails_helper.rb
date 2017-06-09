@@ -26,7 +26,7 @@ RSpec.configure do |config|
   
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.clean_with(:truncation, { except: %w[chunk_types states] })
+    DatabaseCleaner.clean_with(:truncation)
   end
 
   config.around(:each) do |example|
