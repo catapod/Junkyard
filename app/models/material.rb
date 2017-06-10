@@ -4,7 +4,9 @@ class Material < ApplicationRecord
   belongs_to :license
   belongs_to :state
 
-  has_many :slices
+  has_many :chunks
+
+  has_and_belongs_to_many :tags, class_name: 'MaterialTag'
 
   validates :owner, presence: true
   validates :rightholder, presence: true

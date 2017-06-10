@@ -13,8 +13,6 @@ services:
       - .:/transfer
     ports:
       - "${RAILS_PORT}:${RAILS_PORT}"
-    environment:
-      RAILS_ENV: ${RAILS_ENV}
     depends_on:
       - db
     links:

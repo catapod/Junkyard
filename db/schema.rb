@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406110809) do
+ActiveRecord::Schema.define(version: 20170601135440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 20170406110809) do
     t.integer  "chunk_id"
     t.integer  "commentator_id"
     t.text     "body",           null: false
-    t.integer  "parent_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.index ["chunk_id"], name: "index_comments_on_chunk_id", using: :btree
@@ -55,6 +54,13 @@ ActiveRecord::Schema.define(version: 20170406110809) do
     t.json   "body",         null: false
   end
 
+  create_table "material_tags_materials", force: :cascade do |t|
+    t.integer "material_id"
+    t.integer "material_tag_id"
+    t.index ["material_id"], name: "index_material_tags_materials_on_material_id", using: :btree
+    t.index ["material_tag_id"], name: "index_material_tags_materials_on_material_tag_id", using: :btree
+  end
+
   create_table "materials", force: :cascade do |t|
     t.integer  "rightholder_id"
     t.integer  "owner_id"
@@ -67,7 +73,6 @@ ActiveRecord::Schema.define(version: 20170406110809) do
     t.integer  "license_id"
     t.string   "original_language",     null: false
     t.string   "translation_language",  null: false
-    t.integer  "tags",                  null: false, array: true
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
     t.index ["license_id"], name: "index_materials_on_license_id", using: :btree
