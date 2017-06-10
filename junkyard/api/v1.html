@@ -484,11 +484,6 @@
 <td>Текст комментария.</td>
 </tr>
 <tr>
-<td>parent_id</td>
-<td>Integer</td>
-<td><em>Опционально.</em> Идентификатор родительского комментария.</td>
-</tr>
-<tr>
 <td>created_at</td>
 <td>Integer</td>
 <td>Время создания в формате Unix time.</td>
@@ -2395,7 +2390,6 @@
       "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-number">1</span>
     </span>}</span>,
     "<span class="hljs-attribute">body</span>": <span class="hljs-value"><span class="hljs-string">"Hello, world!"</span></span>,
-    "<span class="hljs-attribute">parent_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
     "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
     "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-number">1</span>
   </span>}
@@ -2420,18 +2414,12 @@
 <td>String</td>
 <td>Текст комментария.</td>
 </tr>
-<tr>
-<td>parent_id</td>
-<td>Integer</td>
-<td><em>Опционально.</em> Идентификатор родительского комментария</td>
-</tr>
 </tbody>
 </table>
 <h4>Example URI</h4><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname"></span>/materials/<span class="hljs-attribute" title="material_id">1</span>/chunks/<span class="hljs-attribute" title="chunk_id">2</span>/comments</span></div><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>material_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>идентификатор материала</p>
 </dd><dt>chunk_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>2</span></span><p>идентификатор чанка</p>
 </dd></dl></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-  "<span class="hljs-attribute">body</span>": <span class="hljs-value"><span class="hljs-string">"Hello, world!"</span></span>,
-  "<span class="hljs-attribute">parent_id</span>": <span class="hljs-value"><span class="hljs-number">1</span>
+  "<span class="hljs-attribute">body</span>": <span class="hljs-value"><span class="hljs-string">"Hello, world!"</span>
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
@@ -2439,10 +2427,6 @@
     "<span class="hljs-attribute">body</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Текст комментария"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">parent_id</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Идентификатор родительского комментария"</span>
     </span>}
   </span>}
 </span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>201</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
@@ -2455,7 +2439,6 @@
     "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-number">1</span>
   </span>}</span>,
   "<span class="hljs-attribute">body</span>": <span class="hljs-value"><span class="hljs-string">"Hello, world!"</span></span>,
-  "<span class="hljs-attribute">parent_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
   "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
   "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-number">1</span>
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
@@ -2501,10 +2484,6 @@
     "<span class="hljs-attribute">body</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Текст комментария"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">parent_id</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Идентификатор родительского комментария"</span>
     </span>}</span>,
     "<span class="hljs-attribute">created_at</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
@@ -2549,7 +2528,6 @@
     "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-number">1</span>
   </span>}</span>,
   "<span class="hljs-attribute">body</span>": <span class="hljs-value"><span class="hljs-string">"Hello, world!"</span></span>,
-  "<span class="hljs-attribute">parent_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
   "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
   "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-number">1</span>
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
@@ -2595,10 +2573,6 @@
     "<span class="hljs-attribute">body</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Текст комментария"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">parent_id</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Идентификатор родительского комментария"</span>
     </span>}</span>,
     "<span class="hljs-attribute">created_at</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
@@ -2656,7 +2630,6 @@
     "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-number">1</span>
   </span>}</span>,
   "<span class="hljs-attribute">body</span>": <span class="hljs-value"><span class="hljs-string">"Hello, world!"</span></span>,
-  "<span class="hljs-attribute">parent_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
   "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
   "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-number">1</span>
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
@@ -2702,10 +2675,6 @@
     "<span class="hljs-attribute">body</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Текст комментария"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">parent_id</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Идентификатор родительского комментария"</span>
     </span>}</span>,
     "<span class="hljs-attribute">created_at</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
@@ -3399,7 +3368,7 @@
       "<span class="hljs-attribute">detail</span>": <span class="hljs-value"><span class="hljs-string">"You don't have rights to rate this translation."</span>
     </span>}
   ]
-</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 15 Apr 2017</p><script>/* eslint-env browser */
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 10 Jun 2017</p><script>/* eslint-env browser */
 /* eslint quotes: [2, "single"] */
 'use strict';
 

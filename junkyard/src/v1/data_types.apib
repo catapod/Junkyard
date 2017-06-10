@@ -120,7 +120,6 @@
 + comment_id: 123 (required, number) - Уникальный идентификатор комментария
 + commentator (required, User) - Автор комментария
 + body (required, string) - Текст комментария
-+ parent_id (number) - Идентификатор родительского комментария
 + created_at (required, number) - Время создания варианта перевода в формате Unix time
 + updated_at (required, number) - Время редактирования варианта перевода в формате Unix time
 
@@ -284,7 +283,6 @@ updated_at | Integer | Время редактирования в формате
 comment_id | Integer | Уникальный идентификатор комментария.
 commentator | [User](#header-пользователь-(user)) | Автор комментария.
 body | String | Текст комментария.
-parent_id | Integer | _Опционально._ Идентификатор родительского комментария.
 created_at | Integer | Время создания в формате Unix time.
 updated_at | Integer | Время редактирования в формате Unix time.
 
