@@ -12,7 +12,7 @@ services:
     volumes:
       - .:/transfer
     ports:
-      - "${RAILS_PORT}:${RAILS_PORT}"
+      - "127.0.0.1:${RAILS_PORT}:${RAILS_PORT}"
     depends_on:
       - db
     links:
