@@ -12,7 +12,7 @@ material = FactoryGirl.create(:material, owner: authorized_user)
 users = FactoryGirl.create_list(:user, users_count)
 users.unshift(authorized_user)
 
-create_list(:chunk, chunks_count, material: material).each do |chunk|
+FactoryGirl.create_list(:chunk, chunks_count, material: material).each do |chunk|
   rand(max_translations_count).times do
     translator = users.sample
     FactoryGirl.create(:translation, chunk: chunk, translator: translator)
