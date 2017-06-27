@@ -83,10 +83,12 @@
 + id: 8712 (required, number) - Уникальный идентификатор чанка
 + material_position: 0 (required, number) - Позиция чанка в материале
 + type (required, ChunkType) - Тип чанка
-+ translatable: true (required, boolean) - Чанк переводимый? Пример непереводимого чанка - иллюстрация без текста
++ translatable: false (required, boolean) - Чанк переводимый? Пример непереводимого чанка - иллюстрация без текста
 + body: Hey bro! (required, string) - Оригинальное значение чанка, в случае если значение нетекстовое (изображение, аудиозапись), то размещается ссылка на объект
-+ translations (required, array) - Если чанк переводимый, то содержит массив переводов, иначе атрибут отсутствует
-+ comments (required, array) - Комментарии к чанку
++ translations (optional, object) - Если чанк переводимый, то содержит массив переводов, иначе атрибут отсутствует
+    + data (required, array, fixed-type)
++ comments (required, object) - Комментарии к чанку
+    + data (required, array, fixed-type)
 + created_at (required, number) - Время создания в формате Unix time
 + updated_at (required, number) - Время редактирования в формате Unix time
 
@@ -103,7 +105,7 @@
 + translator (required, User) - Автор (пользователь портала) варианта перевода
 + body: Хей бро! (required, string) - Перевод чанка
 + rating: 1 (required, number) - Усредненное значение пользовательских оценок варианта перевода
-+ rates (array[Rate]) — Список оценок вариантов переводов
++ rates (required, array) — Список оценок вариантов переводов
 + created_at (required, number) - Время создания в формате Unix time
 + updated_at (required, number) - Время редактирования в формате Unix time
 

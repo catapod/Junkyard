@@ -8,7 +8,19 @@
 
 + Response 200 (application/json)
 
-    + Attributes (array[Chunk])
+    + Attributes
+        + data (array, fixed-type)
+            + (Chunk)
+                + translatable: true (boolean)
+                + translations
+                    + data (array, fixed-type)
+                        + (Translation)
+                            + rates
+                                + data (array, fixed-type)
+                                    + (Rate)
+                + comments
+                    + data (array, fixed-type)
+                        + (Comment)
 
 ### Создать чанк [POST]
 ::: warning
@@ -34,6 +46,9 @@ body | String | Оригинальное значение чанка, в слу�
 + Response 201 (application/json)
 
     + Attributes (Chunk)
+        + translatable: true (boolean)
+        + translations
+            + data (array, fixed-type)
 
 + Response 400 (application/json)
 
@@ -52,11 +67,21 @@ body | String | Оригинальное значение чанка, в слу�
     + material_id: 1 (required, number) - идентификатор материала
     + chunk_id: 2 (required, number) - идентификатор чанка
 
-### Получить слайс [GET]
+### Получить чанк [GET]
 
 + Response 200 (application/json)
 
     + Attributes (Chunk)
+        + translatable: true (boolean)
+        + translations
+            + data (array, fixed-type)
+                + (Translation)
+                    + rates
+                        + data (array, fixed-type)
+                            + (Rate)
+        + comments
+            + data (array, fixed-type)
+                + (Comment)
 
 + Response 404 (application/json)
 
@@ -69,7 +94,7 @@ body | String | Оригинальное значение чанка, в слу�
             ]
         }
 
-### Редактировать слайс [PUT]
+### Редактировать чанк [PUT]
 ::: warning
 #### <i class="fa fa-warning"></i> Внимание
 Пользователь должен обладать правами на редактирование чанков
@@ -92,6 +117,16 @@ body | String | Оригинальное значение чанка, в слу�
 + Response 200 (application/json)
 
     + Attributes (Chunk)
+        + translatable: true (boolean)
+        + translations
+            + data (array, fixed-type)
+                + (Translation)
+                    + rates
+                        + data (array, fixed-type)
+                            + (Rate)
+            + comments
+                + data (array, fixed-type)
+                    + (Comment)
 
 + Response 400 (application/json)
 
@@ -115,7 +150,7 @@ body | String | Оригинальное значение чанка, в слу�
             ]
         }
 
-### Удалить слайс [DELETE]
+### Удалить чанк [DELETE]
 ::: warning
 #### <i class="fa fa-warning"></i> Внимание
 Пользователь должен обладать правами на удаление чанков
@@ -155,7 +190,7 @@ body | String | Оригинальное значение чанка, в слу�
 
 + Response 200 (application/json)
 
-    + Attributes (array[Comment])
+    + Attributes (array[Comment], fixed-type)
 
 ### Создать комментарий [POST]
 ::: warning
