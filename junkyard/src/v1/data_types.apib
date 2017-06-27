@@ -2,7 +2,7 @@
 
 ## Material (object)
 
-+ material_id: 213 (required, number) - Уникальный идентификатор материала
++ id: 213 (required, number) - Уникальный идентификатор материала
 + rightholder (required, Rightholder) - Владелец прав на материал - институт, частное лицо, компания и т.д.
 + owner (required, User) - Владелец материал — пользователь портала
 + origignal_link: `https://ocw.mit.edu/computer-science/B8is52oxHBw.srt` (string) - Ссылка на оригинал
@@ -20,30 +20,30 @@
 
 ## MaterialTags (array)
 + (Tag)
-    + tag_id: 32
+    + id: 32
     + name: course
     + display_name: курс
     + body (object)
         + original: Electrical Engineering and Computer Science
         + translated: Электротехника и вычислительная техника
 + (Tag)
-    + tag_id: 12
+    + id: 12
     + name: course_position
     + display_name: номер в курсе
     + body: 1
 + (Tag)
-    + tag_id: 2
+    + id: 2
     + name: category
     + display_name: наука
     + body: Информатика
 + (Tag)
-    + tag_id: 54
+    + id: 54
     + name: subcategory
     + display_name: раздел науки
     + body: Программирование
 
 + (Tag)
-    + tag_id: 82
+    + id: 82
     + name: author
     + display_name: автор
     + body (object)
@@ -51,20 +51,20 @@
         + translated: Профессор Джон Гуттаг
 
 ## Tag (object)
-+ tag_id: 76 (required, number) - Уникальный идентификатор тега
++ id: 76 (required, number) - Уникальный идентификатор тега
 + name (required, string) - имя тега
 + display_name (required, string) - отображаемое имя тега
 + body (required, enum[string, object]) - значение тега
 
 ## License (object)
 
-+ license_id: 7123 (required, number) - Уникальный идентификатор лицензии
++ id: 7123 (required, number) - Уникальный идентификатор лицензии
 + name: `CC BY-NC-SA 4.0` (required, string) - Наименование лицензии
 + link: `https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode` (string) - Ссылка на положения лицензии
 
 ## Rightholder (object)
 
-+ rightholder_id: 9876 (required, number) - Уникальный идентификатор правообладателя
++ id: 9876 (required, number) - Уникальный идентификатор правообладателя
 + caption_original: Massachusetts Institute of Technology (required, string) - Наименование правообладателя на языке оригинала
 + caption_translated: Массачусетский технологический институт (string) - Наименование правообладателя, переведенного на русский язык
 + short_original: MIT (required, string) - Сокращенное наименование правообладателя на языке оригинал
@@ -74,13 +74,13 @@
 
 ## State (object)
 
-+ state_id: 34712 (required, number) - Уникальный идентификатор состояния
++ id: 34712 (required, number) - Уникальный идентификатор состояния
 + name: import (required, string) - Системное имя состояния (на английском языке, иначе slug)
 + display_name: Импорт (required, string) - Отображаемое наименование состояния
 
 ## Chunk (object)
 
-+ chunk_id: 8712 (required, number) - Уникальный идентификатор чанка
++ id: 8712 (required, number) - Уникальный идентификатор чанка
 + material_position: 0 (required, number) - Позиция чанка в материале
 + type (required, ChunkType) - Тип чанка
 + translatable: true (required, boolean) - Чанк переводимый? Пример непереводимого чанка - иллюстрация без текста
@@ -92,13 +92,13 @@
 
 ## ChunkType (object)
 
-+ chunk_type_id: 1 (required, number) - Уникальный идентификатор чанка
++ id: 1 (required, number) - Уникальный идентификатор чанка
 + name: text (required, string) - Системное имя типа чанка (на английском языке, иначе slug)
 + display_name: Текст (required, string) - Отображаемое наименование типа чанка
 
 ## Translation (object)
 
-+ translation_id: 987 (required, number) - Уникальный идентификатор варианта перевода
++ id: 987 (required, number) - Уникальный идентификатор варианта перевода
 + chunk_id: 8712 (required, number) - Идентификатор чанка, которому принадлежит вариант перевода
 + translator (required, User) - Автор (пользователь портала) варианта перевода
 + body: Хей бро! (required, string) - Перевод чанка
@@ -109,7 +109,7 @@
 
 ## User (object)
 
-+ user_id: 4567 (required, number) - Уникальный идентификатор пользователя
++ id: 4567 (required, number) - Уникальный идентификатор пользователя
 + nickname: jonny (required, string) - Никнейм пользователя
 + avatar: `http://gravatar.com/jonny` (string) - Ссылка на аватар
 + created_at (required, number) - Время создания в формате Unix time
@@ -117,7 +117,7 @@
 
 ## Comment (object)
 
-+ comment_id: 123 (required, number) - Уникальный идентификатор комментария
++ id: 123 (required, number) - Уникальный идентификатор комментария
 + commentator (required, User) - Автор комментария
 + body (required, string) - Текст комментария
 + created_at (required, number) - Время создания варианта перевода в формате Unix time
@@ -125,7 +125,7 @@
 
 ## Rate (object)
 
-+ rate_id: 8762 (required, number) - Уникальный идентификатор оценки
++ id: 8762 (required, number) - Уникальный идентификатор оценки
 + rater (required, User) - Пользователь, поставивший оценку варианту перевода
 + value: 1 (required, number) - Значение оценки
 + created_at (required, number) - Время создания в формате Unix time
@@ -148,7 +148,7 @@
 
 Атрибут | Тип | Описание
 --- | --- | ---
-material_id | Integer | Уникальный идентификатор материала.
+id | Integer | Уникальный идентификатор материала.
 rightholder | [Rightholder](#header-правообладатель-(rightholder)) | Владелец прав на материал - институт, частное лицо, компания и т.д. Если материал авторский, то в качестве правообладателя выступает пользователь портала.
 owner | [User](#header-пользователь-(user)) | Владелец материал — пользователь портала.
 original_link | String | _Опционально._ Ссылка на оригинал.
@@ -177,7 +177,7 @@ _body_ должен быть записан JSON-объект с полям `ori
 
 Атрибут | Тип | Описание
 --- | --- | ---
-tag_id | Integer | Уникальный идентификатор тега.
+id | Integer | Уникальный идентификатор тега.
 name | String | Имя тега (системное, латиницей без пробелов, иначе slug).
 display_name | String | Отображаемое имя тега, может быть на любом языке.
 body | JSON | Значение тега.
@@ -190,14 +190,14 @@ body | JSON | Значение тега.
 
 Атрибут | Тип | Описание
 --- | --- | ---
-license_id | Integer | Уникальный идентификатор лицензии.
+id | Integer | Уникальный идентификатор лицензии.
 name | String | Наименование лицензии.
 link | String | Ссылка на положения лицензии.
 
 ## Правообладатель (Rightholder)
 Атрибут | Тип | Описание
 --- | --- | ---
-owner_id | String | Уникальный идентификатор правообладателя.
+id | String | Уникальный идентификатор правообладателя.
 caption_original | String | Наименование правообладателя на языке оригинала.
 caption_translated | String | _Опционально._ Наименование правообладателя, переведенного на русский язык.
 short_original | String | Сокращенное наименование правообладателя на языке оригинал.
@@ -226,7 +226,7 @@ display_name | String | Отображаемое наименование сос
 
 Атрибут | Тип | Описание
 --- | --- | ---
-chunk_id | Integer | Уникальный идентификатор чанка.
+id | Integer | Уникальный идентификатор чанка.
 material_position | Integer | Позиция чанка в материале.
 type | [Тип чанка](#header-тип-чанка-(chunktype)) | Тип чанка.
 translatable | boolean | Чанк переводимый? Пример непереводимого чанка — иллюстрация без текста.
@@ -247,14 +247,14 @@ updated_at | Integer | Время редактирования в формате
 
 Атрибут | Тип | Описание
 --- | --- | ---
-chunk_type_id | Integer | Уникальный идентификатор чанка.
+id | Integer | Уникальный идентификатор чанка.
 name | String | Системное имя типа чанка (на английском языке, иначе slug)
 display_name | String | Отображаемое наименование типа чанка
 
 ## Перевод (Translation)
 Атрибут | Тип | Описание
 --- | --- | ---
-translation_id | Integer | Уникальный идентификатор варианта перевода.
+id | Integer | Уникальный идентификатор варианта перевода.
 translator | [User](#header-пользователь-(user)) | Автор (пользователь портала) варианта перевода.
 body | String | Значение варианта перевода
 rating | Integer | Усредненное значение пользовательских оценок варианта перевода.
@@ -265,7 +265,7 @@ updated_at | Integer | Время редактирования в формате
 ## Пользователь (User)
 Атрибут | Тип | Описание
 --- | --- | ---
-user_id | String | Уникальный идентификатор пользователя.
+id | String | Уникальный идентификатор пользователя.
 nickname | String | Никнейм пользователя.
 avatar | String | Ссылка на аватар.
 created_at | Integer | Время создания в формате Unix time.
@@ -280,7 +280,7 @@ updated_at | Integer | Время редактирования в формате
 
 Атрибут | Тип | Описание
 --- | --- | ---
-comment_id | Integer | Уникальный идентификатор комментария.
+id | Integer | Уникальный идентификатор комментария.
 commentator | [User](#header-пользователь-(user)) | Автор комментария.
 body | String | Текст комментария.
 created_at | Integer | Время создания в формате Unix time.
@@ -291,7 +291,7 @@ updated_at | Integer | Время редактирования в формате
 
 Атрибут | Тип | Описание
 --- | --- | ---
-rate_id | String | Уникальный идентификатор оценки.
+id | String | Уникальный идентификатор оценки.
 rater | [User](#header-пользователь-(user)) | Пользователь, поставивший оценку варианту перевода.
 value | Integer | Значение оценки.
 created_at | Integer | Время создания в формате Unix time.
