@@ -1,0 +1,157 @@
+# Group Комментарии к чанкам
+## Комментарии [/materials/{material_id}/chunks/{chunk_id}/comments]
+
++ Parameters
+    + material_id: 1 (required, number) - идентификатор материала
+    + chunk_id: 2 (required, number) - идентификатор чанка
+
+### Список комментариев [GET]
+
++ Response 200 (application/json)
+
+    + Attributes 
+        + data (array, fixed-type)
+            + (Comment)
+
+### Создать комментарий [POST]
+::: warning
+#### <i class="fa fa-warning"></i> Внимание
+Пользователь должен обладать правами на создание комментариев
+:::
+
+Атрибут | Тип | Описание
+--- | --- | ---
+body | String | Текст комментария.
+
++ Request (application/json)
+
+    + Attributes (object)
+        + body (string) - Текст комментария
+
++ Response 201 (application/json)
+
+    + Attributes (Comment)
+
++ Response 400 (application/json)
+
+        {
+            "errors": [
+                {
+                    "title": "Invalid attribute.",
+                    "detail": "Material should exist."
+                }
+            ]
+        }
+
++ Response 401 (application/json)
+
+        {
+            "errors": [
+                {
+                    "title": "Unauthorized access.",
+                    "detail": "You don't have rights to comment this slice."
+                }
+            ]
+        }
+
+## Комментарий [/materials/{material_id}/chunks/{chunk_id}/comments/{comment_id}]
+
++ Parameters
+    + material_id: 1 (required, number) - идентификатор материала
+    + chunk_id: 2 (required, number) - идентификатор чанка
+    + comment_id: 10 (required, number) - идентификатор комментария
+
+### Получить комментарий [GET]
+
++ Response 200 (application/json)
+
+    + Attributes (Comment)
+
++ Response 404 (application/json)
+
+        {
+            "errors": [
+                {
+                    "title": "Entity not found.",
+                    "detail": "Comment was not found."
+                }
+            ]
+        }
+
+### Редактировать комментарий [PUT]
+::: warning
+#### <i class="fa fa-warning"></i> Внимание
+Пользователь должен обладать правами на редактирование комментариев
+:::
+
++ Request (application/json)
+
+    + Attributes (object)
+        + body (string) - Текст комментария
+
++ Response 200 (application/json)
+
+    + Attributes (Comment)
+
++ Response 400 (application/json)
+
+        {
+            "errors": [
+                {
+                    "title": "Invalid attribute.",
+                    "detail": "Material should exist."
+                }
+            ]
+        }
+
++ Response 401 (application/json)
+
+        {
+            "errors": [
+                {
+                    "title": "Unauthorized access.",
+                    "detail": "You don't have rights to edit this comment."
+                }
+            ]
+        }
+
++ Response 404 (application/json)
+
+        {
+            "errors": [
+                {
+                    "title": "Entity not found.",
+                    "detail": "Comment was not found."
+                }
+            ]
+        }
+
+### Удалить комментарий [DELETE]
+::: warning
+#### <i class="fa fa-warning"></i> Внимание
+Пользователь должен обладать правами на удаление комментариев
+:::
+
++ Response 204 (application/json)
+
++ Response 401 (application/json)
+
+        {
+            "errors": [
+                {
+                    "title": "Unauthorized access.",
+                    "detail": "You don't have rights to delete this comment."
+                }
+            ]
+        }
+
++ Response 404 (application/json)
+
+        {
+            "errors": [
+                {
+                    "title": "Entity not found.",
+                    "detail": "Comment was not found."
+                }
+            ]
+        }

@@ -1,4 +1,4 @@
-# Group Варианты переводов
+# Group Варианты переводов чанков
 ::: note
 У каждого *переводимого* **чанка** может быть несколько **вариантов перевода**
 от нескольких переводчиков. У каждого **варианта перевода** есть свой **рейтинг**
@@ -15,7 +15,12 @@
 
 + Response 200 (application/json)
 
-    + Attributes (array[Translation], fixed-type)
+    + Attributes
+        + data(array, fixed-type)
+            + (Translation)
+                + rates
+                    + data (array, fixed-type)
+                        + (Rate)
 
 ### Создание варианта перевода [POST]
 ::: warning
@@ -39,6 +44,8 @@ body | String | Значение варианта перевода
         + translator (required, User) - Автор (пользователь портала) варианта перевода
         + body: Хей бро! (required, string) - Перевод чанка
         + rating: 0 (required, number) - Усредненное значение пользовательских оценок варианта перевода
+        + rates (required, object)
+            + data (array)
         + created_at: 1489663450223 (required, number) - Время создания варианта перевода в формате Unix time
         + updated_at: 1489663450223 (required, number) - Время редактирования варианта перевода в формате Unix time
 
@@ -65,6 +72,9 @@ body | String | Значение варианта перевода
 + Response 200 (application/json)
 
     + Attributes (Translation)
+        + rates
+            + data (array, fixed-type)
+                + (Rate)
 
 + Response 404 (application/json)
 
@@ -98,6 +108,9 @@ body | String | Значение варианта перевода
 
     + Attributes (Translation)
         + body: Хей бро! (string) - Перевод чанка
+        + rates
+            + data (array, fixed-type)
+                + (Rate)
 
 + Response 400 (application/json)
 
