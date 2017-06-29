@@ -21,6 +21,17 @@ RSpec.describe Api::ChunksController, type: :controller do
 
         expect(json).not_to be_empty
         expect(json.size).to eq(5)
+        expect(response).to match_response_schema('chunks/index')
+      end
+
+      it 'returns chunks with full objects inside' do
+        chunk = create(:chunk, material: material)
+        translation = create(:translation, chunk: chunk)
+        comment = create(:comment, chunk: chunk)
+
+        get :index, params: { material_id: material_id }
+
+        expect(response).to match_response_schema('chunks/index')
       end
     end
   end
@@ -39,6 +50,7 @@ RSpec.describe Api::ChunksController, type: :controller do
       it 'returns the chunk' do
         expect(json).not_to be_empty
         expect(json['id']).to eq(chunk_id)
+        expect(response).to match_response_schema('chunks/show')
       end
     end
 
@@ -76,6 +88,7 @@ RSpec.describe Api::ChunksController, type: :controller do
 
       it 'creates a chunk' do
         expect(json['body']).to eq('Chuck Norris can solve the Towers of Hanoi in one move.')
+        expect(response).to match_response_schema('chunks/store')
       end
     end
 
@@ -112,6 +125,7 @@ RSpec.describe Api::ChunksController, type: :controller do
       it 'updates the record' do
         expect(json).not_to be_empty
         expect(json['body']).to eq('Updated body')
+        expect(response).to match_response_schema('chunks/update')
       end
     end
 
