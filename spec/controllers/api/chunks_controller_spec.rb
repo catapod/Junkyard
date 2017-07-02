@@ -20,7 +20,7 @@ RSpec.describe Api::ChunksController, type: :controller do
         get :index, params: { material_id: material_id }
 
         expect(json).not_to be_empty
-        expect(json.size).to eq(5)
+        expect(json['data'].size).to eq(5)
         expect(response).to match_response_schema('chunks/index')
       end
 
