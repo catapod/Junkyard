@@ -62,7 +62,7 @@ RSpec.describe Api::MaterialsController, type: :controller do
     let(:rightholder) { create(:rightholder) }
     let(:state) { create(:state) }
     let(:license) { create(:license) }
-    let(:material_tags) { create_list(:material_tag, 2) }
+    let(:tags) { create_list(:material_tag, 2) }
 
     let :valid_attributes do
       {
@@ -76,27 +76,7 @@ RSpec.describe Api::MaterialsController, type: :controller do
         license_id: license.id,
         "original_language": 'en',
         "translation_language": 'ru',
-        tags: [
-          {
-            name: 'course',
-            display_name: 'курс',
-            body: 'Electrical Engineering and Computer Science'
-          },
-          {
-            name: 'course',
-            display_name: 'курс',
-            body: 'Electrical Engineering and Computer Science'
-          },
-          {
-            id: material_tags[0].id,
-            name: 'course2',
-            display_name: 'курс2',
-            body: 'Electrical Engineering and Computer Science'
-          },
-          {
-            id: material_tags[1].id
-          }
-        ]
+        tags: tags.map(&:id)
       }
     end
 
@@ -125,14 +105,14 @@ RSpec.describe Api::MaterialsController, type: :controller do
     end
 
     context 'when the tags is not exists' do
-      before { post :create, params: { caption_original: 'test', tags: [{ id: 200 }] } }
+      before { post :create, params: { **valid_attributes, tags: [200] } }
 
-      it 'returns status code 404' do
-        expect(response).to have_http_status(404)
+      it 'returns status code 201' do
+        expect(response).to have_http_status(201)
       end
 
       it 'returns not found message' do
-        expect(response.body).to match(/Couldn't find MaterialTag/)
+        expect(json['tags']).not_to include(200)
       end
     end
   end
