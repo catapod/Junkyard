@@ -2,8 +2,9 @@ class Api::CommentsController < Api::ApiController
   before_action :set_comment, only: [:show, :update, :destroy]
 
   def index
-    @comments = Chunk.find(params['chunk_id']).comments
-    json_response(@comments)
+    @comments = Chunk.find(params['chunk_id']).comments.page params[:page]
+
+    json_response("data": @comments.map { |comment| CommentSerializer.new(comment) })
   end
 
   def create
