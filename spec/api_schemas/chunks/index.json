@@ -98,7 +98,8 @@
                             ]
                           }
                         }
-                      }
+                      },
+                      "required": ["data"]
                     },
                     "created_at": { "type": "date-time" },
                     "updated_at": { "type": "date-time" }
@@ -114,7 +115,8 @@
                   ]
                 }
               }
-            }
+            },
+            "required": ["data"]
           },
           "comments": {
             "title": "Comments list",
@@ -157,7 +159,8 @@
                   ]
                 }
               }
-            }
+            },
+            "required": ["data"]
           },
           "created_at": { "type": "date-time" },
           "updated_at": { "type": "date-time" }
