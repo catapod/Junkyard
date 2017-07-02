@@ -38,14 +38,13 @@
                   "type": "object",
                   "properties": {
                     "id": { "type": "number" },
-                    "chunk_id": { "type": "number" },
                     "translator": {
                       "title": "Translation author",
                       "type": "object",
                       "properties": {
                         "id": { "type": "number" },
                         "nickname": { "type": "string" },
-                        "avatar": { "type": "string" },
+                        "avatar": { "type": "string|null" },
                         "created_at": { "type": "date-time" },
                         "updated_at": { "type": "date-time" }
                       },
@@ -75,7 +74,7 @@
                                 "properties": {
                                   "id": { "type": "number" },
                                   "nickname": { "type": "string" },
-                                  "avatar": { "type": "string" },
+                                  "avatar": { "type": "string|null" },
                                   "created_at": { "type": "date-time" },
                                   "updated_at": { "type": "date-time" }
                                 },
@@ -106,7 +105,6 @@
                   },
                   "required": [
                     "id",
-                    "chunk_id",
                     "translator",
                     "body",
                     "rating",
@@ -135,7 +133,7 @@
                       "properties": {
                         "id": { "type": "number" },
                         "nickname": { "type": "string" },
-                        "avatar": { "type": "string" },
+                        "avatar": { "type": "string|null" },
                         "created_at": { "type": "date-time" },
                         "updated_at": { "type": "date-time" }
                       },
@@ -175,7 +173,7 @@
           "updated_at"
         ]
       }
-    },
-    "required": ["data"]
-  }
+    }
+  },
+  "required": ["data"]
 }
