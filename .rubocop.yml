@@ -2,6 +2,7 @@ AllCops:
   Exclude:
     - db/migrate/*.rb
     - db/schema.rb
+    - bin/*
   TargetRubyVersion: 2.4
 
 Rails:
