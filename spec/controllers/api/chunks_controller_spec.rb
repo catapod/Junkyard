@@ -26,8 +26,8 @@ RSpec.describe Api::ChunksController, type: :controller do
 
       it 'returns chunks with full objects inside' do
         chunk = create(:chunk, material: material)
-        translation = create(:translation, chunk: chunk)
-        comment = create(:comment, chunk: chunk)
+        create(:translation, chunk: chunk)
+        create(:comment, chunk: chunk)
 
         get :index, params: { material_id: material_id }
 
@@ -50,6 +50,17 @@ RSpec.describe Api::ChunksController, type: :controller do
       it 'returns the chunk' do
         expect(json).not_to be_empty
         expect(json['id']).to eq(chunk_id)
+        expect(response).to match_response_schema('chunks/show')
+      end
+
+      it 'returns the chunk with full objects' do
+        chunk = create(:chunk, material: material)
+        translation = create(:translation, chunk: chunk)
+        create(:comment, chunk: chunk)
+        create_list(:rate, 5, translation: translation)
+
+        get :show, params: { material_id: material_id, id: chunk.id }
+
         expect(response).to match_response_schema('chunks/show')
       end
     end
