@@ -35,3 +35,6 @@ group :development do
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Added at 2017-07-02 07:00:07 +0000 by root:
+gem "kaminari", "~> 1.0"
