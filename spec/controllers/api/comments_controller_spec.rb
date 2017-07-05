@@ -15,7 +15,7 @@ RSpec.describe Api::CommentsController, type: :controller do
 
     context 'when the chunk has no comments' do
       it 'returns empty response' do
-        expect(json).to be_empty
+        expect(json['data']).to be_empty
       end
     end
 
@@ -26,7 +26,8 @@ RSpec.describe Api::CommentsController, type: :controller do
         get :index, params: route_params
 
         expect(json).not_to be_empty
-        expect(json.size).to eq(5)
+        expect(json['data'].size).to eq(5)
+        expect(response).to match_response_schema('chunks/comments/index')
       end
     end
   end
@@ -44,6 +45,7 @@ RSpec.describe Api::CommentsController, type: :controller do
       it 'returns the comment' do
         expect(json).not_to be_empty
         expect(json['id']).to eq(comment.id)
+        expect(response).to match_response_schema('chunks/comments/show')
       end
     end
 
@@ -79,6 +81,7 @@ RSpec.describe Api::CommentsController, type: :controller do
 
       it 'creates a comment' do
         expect(json['body']).to eq('Chuck Norris can solve the Towers of Hanoi in one move.')
+        expect(response).to match_response_schema('chunks/comments/store')
       end
     end
 
@@ -117,6 +120,7 @@ RSpec.describe Api::CommentsController, type: :controller do
       it 'updates the comment' do
         expect(json).not_to be_empty
         expect(json['body']).to eq('Updated body')
+        expect(response).to match_response_schema('chunks/comments/update')
       end
     end
 

@@ -1,9 +1,20 @@
 class ChunkSerializer < ActiveModel::Serializer
-  attributes :id, :material_position, :translatable, :body
+  attributes :id, :material_position, :translatable, :body, :created_at, :updated_at
 
-  belongs_to :chunk_type
-  belongs_to :material
+  belongs_to :type
 
   has_many :comments
   has_many :translations
+
+  def comments
+    {
+      "data": object.comments.page(1).map { |comment| CommentSerializer.new(comment) }
+    }
+  end
+
+  def translations
+    {
+      "data": object.translations.page(1).map { |translation| TranslationSerializer.new(translation) }
+    }
+  end
 end

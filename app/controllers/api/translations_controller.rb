@@ -2,8 +2,9 @@ class Api::TranslationsController < Api::ApiController
   before_action :set_translation, only: [:show, :update, :destroy]
 
   def index
-    @translations = Chunk.find(params['chunk_id']).translations
-    json_response(@translations)
+    @translations = Chunk.find(params['chunk_id']).translations.page params[:page]
+
+    json_response("data": @translations.map { |translation| TranslationSerializer.new(translation) })
   end
 
   def create

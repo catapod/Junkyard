@@ -1,11 +1,11 @@
 class Chunk < ApplicationRecord
   belongs_to :material
-  belongs_to :chunk_type
+  belongs_to :type, class_name: 'ChunkType', foreign_key: 'chunk_type_id'
   has_many :comments
   has_many :translations
 
   validates :material, presence: true
-  validates :chunk_type, presence: true
+  validates :type, presence: true
   validates :material_position, presence: true
   validates :translatable, presence: true
   validates :body, presence: true
