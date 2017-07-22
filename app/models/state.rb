@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+# Material state
 class State < ApplicationRecord
   has_many :materials
 

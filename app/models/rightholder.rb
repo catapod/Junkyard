@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+# Rightholder (juristic owner) model
 class Rightholder < ApplicationRecord
   has_many :materials
 

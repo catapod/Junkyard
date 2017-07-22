@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+# All materials before translation are split on original chunks
+# and translates after it.
 class Chunk < ApplicationRecord
   belongs_to :material
   belongs_to :type, class_name: 'ChunkType', foreign_key: 'chunk_type_id'
