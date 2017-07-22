@@ -3,6 +3,7 @@ AllCops:
     - db/migrate/*.rb
     - db/schema.rb
     - bin/*
+    - db/seeds.rb
   TargetRubyVersion: 2.4
 
 Rails:
