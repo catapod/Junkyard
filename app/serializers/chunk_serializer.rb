@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+# Default Chunk json serializer
 class ChunkSerializer < ActiveModel::Serializer
   attributes :id, :material_position, :translatable, :body, :created_at, :updated_at
 
