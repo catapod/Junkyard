@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # All materials before translation are split on original chunks
 # and translates after it.
 class Chunk < ApplicationRecord

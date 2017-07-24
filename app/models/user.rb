@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # User model
 class User < ApplicationRecord
   has_many :materials, foreign_key: 'owner_id'

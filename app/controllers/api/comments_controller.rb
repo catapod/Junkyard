@@ -1,8 +1,9 @@
 # frozen_string_literal: true
+
 module Api
   # Api controller for material chunks comments
   class CommentsController < Api::ApiController
-    before_action :set_comment, only: [:show, :update, :destroy]
+    before_action :set_comment, only: %i[show update destroy]
 
     def index
       @comments = Chunk.find(params['chunk_id']).comments.page params[:page]

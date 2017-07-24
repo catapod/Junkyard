@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # Api exceptions handler
 module ExceptionHandler
   extend ActiveSupport::Concern

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # Translation of original material slice
 class Translation < ApplicationRecord
   belongs_to :chunk

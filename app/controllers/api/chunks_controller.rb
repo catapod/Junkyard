@@ -1,8 +1,9 @@
 # frozen_string_literal: true
+
 module Api
   # Api controller for material chunks
   class ChunksController < Api::ApiController
-    before_action :set_chunk, only: [:show, :update, :destroy]
+    before_action :set_chunk, only: %i[show update destroy]
 
     def index
       @chunks = Material.find(params['material_id']).chunks.page params[:page]

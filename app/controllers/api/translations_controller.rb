@@ -1,8 +1,9 @@
 # frozen_string_literal: true
+
 module Api
   # Api controller for material chunks translations
   class TranslationsController < Api::ApiController
-    before_action :set_translation, only: [:show, :update, :destroy]
+    before_action :set_translation, only: %i[show update destroy]
 
     def index
       @translations = Chunk.find(params['chunk_id']).translations.page params[:page]

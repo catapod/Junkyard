@@ -1,8 +1,9 @@
 # frozen_string_literal: true
+
 module Api
   # Api controller for materials
   class MaterialsController < Api::ApiController
-    before_action :set_material, only: [:show, :update, :destroy]
+    before_action :set_material, only: %i[show update destroy]
 
     def index
       @materials = Material.all

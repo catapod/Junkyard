@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # Default Material json serializer
 class MaterialSerializer < ActiveModel::Serializer
   attributes(

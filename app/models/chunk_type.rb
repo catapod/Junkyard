@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # Material chunks has one type:
 #  - text
 #  - image
