@@ -1,0 +1,15 @@
+# Group Пользователи
+Все эндпоинты авторизуются посредством `JWT-токена` ([http://jwt.io](http://jwt.io)).
+_Полученный после аутентификации токен доступа подставляется в хедер для последующий авторизации, например:_
+```
+Authorization=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjR9.EqihdtKAhUEs1JGmxgmL7sivHus2O4E04cKEmtey5Eg
+```
+
+## Аутентификация [POST /auth]
+🚧  На текущий момент любой `POST` запрос возвращает один и тот же бессрочный тестовый токен.
+
++ Response 200 (application/json)
+
+		{
+			"access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjR9.EqihdtKAhUEs1JGmxgmL7sivHus2O4E04cKEmtey5Eg"
+		}
