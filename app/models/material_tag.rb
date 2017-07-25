@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+# Materials can have many tags for purposes of searching and clustering
 class MaterialTag < ApplicationRecord
   validates :name, presence: true
   validates :display_name, presence: true
