@@ -21,9 +21,9 @@ ActiveRecord::Schema.define(version: 20170601135440) do
   end
 
   create_table "chunks", force: :cascade do |t|
-    t.integer  "material_id"
+    t.integer  "material_id",       null: false
     t.integer  "material_position", null: false
-    t.integer  "chunk_type_id"
+    t.integer  "chunk_type_id",     null: false
     t.boolean  "translatable",      null: false
     t.text     "body",              null: false
     t.datetime "created_at",        null: false
@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 20170601135440) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer  "chunk_id"
-    t.integer  "commentator_id"
+    t.integer  "chunk_id",       null: false
+    t.integer  "commentator_id", null: false
     t.text     "body",           null: false
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
@@ -63,14 +63,14 @@ ActiveRecord::Schema.define(version: 20170601135440) do
 
   create_table "materials", force: :cascade do |t|
     t.integer  "rightholder_id"
-    t.integer  "owner_id"
+    t.integer  "owner_id",              null: false
     t.string   "original_link"
     t.string   "caption_original",      null: false
     t.string   "caption_translated"
     t.text     "annotation_original",   null: false
     t.text     "annotation_translated"
-    t.integer  "state_id"
-    t.integer  "license_id"
+    t.integer  "state_id",              null: false
+    t.integer  "license_id",            null: false
     t.string   "original_language",     null: false
     t.string   "translation_language",  null: false
     t.datetime "created_at",            null: false
@@ -82,9 +82,9 @@ ActiveRecord::Schema.define(version: 20170601135440) do
   end
 
   create_table "rates", force: :cascade do |t|
-    t.integer  "rater_id"
+    t.integer  "rater_id",       null: false
     t.integer  "value",          null: false
-    t.integer  "translation_id"
+    t.integer  "translation_id", null: false
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.index ["rater_id"], name: "index_rates_on_rater_id", using: :btree
@@ -106,8 +106,8 @@ ActiveRecord::Schema.define(version: 20170601135440) do
   end
 
   create_table "translations", force: :cascade do |t|
-    t.integer  "chunk_id"
-    t.integer  "translator_id"
+    t.integer  "chunk_id",      null: false
+    t.integer  "translator_id", null: false
     t.text     "body",          null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
